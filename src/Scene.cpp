@@ -36,15 +36,14 @@ void Scene::onUpdate(double deltaTime)
 
 void Scene::onRender()
 {
-	//sRenderer->windowClear();
-	
 	renderBegin();
 	render();
 	renderEnd();
 
 	renderGUI();
 
-	//sRenderer->windowRefresh();
+	sRenderer->windowClear();
+	sRenderer->windowRefresh();
 }
 
 
@@ -91,7 +90,8 @@ void Scene::renderBegin()
 
 void Scene::render()
 {
-
+	SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
+	printf("\n ESTO ES UNA SCENE");
 }
 
 void Scene::renderEnd()
