@@ -21,6 +21,7 @@ public:
 
 	std::stack<Scene*> getSceneHistory() { return mSceneHistory; }
 
+
 	//	Functions
 	void changeScene(SceneEnum next_scene, bool load_on_return = true, bool history = true);
 

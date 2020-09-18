@@ -8,22 +8,23 @@ public:
 	~Renderer();
 
 	//	Setters
-	//void setFrameRate();
+	void setFrameRate(unsigned int frameRate);
 
 	//	Getters
 	static Renderer* getInstance();
 
 	inline SDL_Window* getWindow() { return mWindow; };
+	inline SDL_Renderer* getRenderer() { return mRenderer; };
 
 	bool windowIsOpen();
 
 	//int getFrameRateLimit();
 
 	//	Funtions
-	void initRenderer();
 	void initWindow();
+	void initRenderer();
 	void windowClear();
-	void windowReferesh();
+	void windowRefresh();
 
 	void drawRectangle();
 	void drawCircle();
@@ -36,10 +37,6 @@ private:
 	static Renderer* instance;
 	SDL_Renderer* mRenderer;
 	SDL_Window* mWindow;
-
-	//	GLOBAL VARIABLES
-	//int mWindowWidth, mWindowHeight;
-	//int mFrameRateLimit;
 
 };
 

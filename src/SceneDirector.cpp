@@ -62,7 +62,9 @@ void SceneDirector::initScenes()
 	mScenes.push_back(scene_menu);
 	mScenes.push_back(scene_game);
 
-	for (size_t i = 0; i < SceneEnum::LAST_NO_USE; i++)
+	mScenes.shrink_to_fit();
+
+	for (size_t i = 0; i < mScenes.size(); i++)
 	{
 		mScenes[i]->preLoad();
  	}
