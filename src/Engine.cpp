@@ -123,5 +123,7 @@ void Engine::doStuff()
 
 void Engine::destroy()
 {
-	//	AQUI LLAMO A TODO QUISQUI PARA DESTRUIR;
+	SDL_DestroyWindow(sRenderer->getWindow());
+
+	SDL_DestroyRenderer(sRenderer->getRenderer());
 }
