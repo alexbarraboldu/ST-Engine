@@ -9,10 +9,22 @@ Renderer::Renderer() : Id()
 	id = GlobalVar::WIDTH_HEIGHT;
 	mWindow = NULL;
 
-	initWindow();		//	AÚN NO ESTÁ HECHO EL RENDER
+	initWindow();
+	initRenderer();
 }
 
 Renderer::~Renderer() {}
+
+
+//	SETTERS
+
+void Renderer::setFrameRate(unsigned int frameRate)
+{
+	sGlobalVariables->setFrametRate(frameRate, id);
+}
+
+
+//	GETTERS
 
 Renderer* Renderer::getInstance()
 {
@@ -23,6 +35,8 @@ Renderer* Renderer::getInstance()
 	return instance;
 }
 
+
+//	FUNCTIONS
 
 void Renderer::initWindow()
 {
@@ -35,5 +49,37 @@ void Renderer::initWindow()
 
 void Renderer::initRenderer()
 {
-	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_SOFTWARE);
+}
+
+
+void Renderer::windowClear()
+{
+	SDL_RenderClear(mRenderer);
+
+}
+
+void Renderer::windowRefresh()
+{
+	SDL_RenderPresent(mRenderer);
+}
+
+void Renderer::drawRectangle()
+{
+
+}
+
+void Renderer::drawCircle()
+{
+
+}
+
+void Renderer::drawSprite()
+{
+
+}
+
+void Renderer::drawText()
+{
+
 }
