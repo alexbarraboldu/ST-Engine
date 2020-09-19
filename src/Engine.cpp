@@ -28,9 +28,14 @@ Engine::~Engine()
 
 void Engine::engineLoop()
 {
+	double Dsum = 0.0f;
+
 	while (sGlobalVariables->getQuiteEngineLoop(id) == true)
 	{
 		std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
+
+		Dsum += deltaTime;
+		totalFrames++;
 
 		if (beginFrame.time_since_epoch().count() / 1000000000.0f >= Timer)
 		{
@@ -72,16 +77,17 @@ void Engine::engineLoop()
 		//printf("\nTotal FPS: %d", totalFrames);
 		//printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
 
-		totalFrames++;
 
-		if (timer >= 1)	//	PARA SABER CUANTOS Frames POR SEGUNDO
+		if (/*timer >= 1*/ Dsum >= 1000000000.0f)	//	PARA SABER CUANTOS Frames POR SEGUNDO
 		{
 			timer = 0;
+			Dsum = 0;
 			FPS = totalFrames;
 			totalFrames = 0;
 
 			std::string title = "FPS: " + std::to_string(FPS);
-			title += " | DeltaTime: " + std::to_string(deltaTime / 1000000.0f);
+			title += " | DeltaTime (ms): " + std::to_string(deltaTime / 1000000.0f);
+			title += " | Dsum (ns): " + std::to_string(Dsum);
 
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
@@ -96,19 +102,19 @@ void Engine::engineLoop()
 			std::this_thread::sleep_for(std::chrono::nanoseconds((long)(1000000000.0f / sGlobalVariables->getFrameRate(id) - (deltaTime / 1000000000.0f))));
 
 			// Cambias el deltaTime para ajustarse a la velocidad de simulación deseada
-			deltaTime += 1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime;
+			deltaTime += 1000000000.0f / sGlobalVariables->getFrameRate(id) - (deltaTime / 1000000000.0f);
 		}
 	}
 }
 
 double Engine::clockToMilliseconds(clock_t ticks) {
 	// units/(units/time) => time (seconds) * 1000 = milliseconds
-	return (ticks / (double)CLOCKS_PER_SEC) * 1000.0;
+	return (ticks / (double)CLOCKS_PER_SEC) * 1000.0f;
 }
 
 double Engine::clockToNanoseconds(clock_t ticks) {
 	// units/(units/time) => time (seconds) * 1000000 = nanoseconds
-	return (ticks / (double)CLOCKS_PER_SEC) * 1000000.0;
+	return (ticks / (double)CLOCKS_PER_SEC) * 1000000.0f;
 }
 
 void Engine::doStuff()
