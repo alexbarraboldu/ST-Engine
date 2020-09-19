@@ -36,13 +36,14 @@ void Scene::onUpdate(double deltaTime)
 
 void Scene::onRender()
 {
+	sRenderer->windowClear();
+	
 	renderBegin();
 	render();
 	renderEnd();
 
 	renderGUI();
 
-	sRenderer->windowClear();
 	sRenderer->windowRefresh();
 }
 
@@ -92,13 +93,10 @@ void Scene::render()
 {
 	//SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
 
-	SDL_Rect rect;
-	rect.x = 2;
-	rect.y = 720 / 2;
-	rect.w = 100;
-	rect.h = 100;
+	sRenderer->drawRectangle(SDL_Rect{1280/2 - 200/2, 720/2 - 200 / 2, 200, 200}, SDL_Color{ 255,255,255,255 }, true);
+	
+	sRenderer->drawRectangle(SDL_Rect{200,200, 200, 200}, SDL_Color{ 255,255,255,255 });
 
-	sRenderer->drawRectangle(rect, SDL_Color{ 0,0,0,255 });
 }
 
 void Scene::renderEnd()
