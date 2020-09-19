@@ -90,7 +90,15 @@ void Scene::renderBegin()
 
 void Scene::render()
 {
-	SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
+	//SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
+
+	SDL_Rect rect;
+	rect.x = 2;
+	rect.y = 720 / 2;
+	rect.w = 100;
+	rect.h = 100;
+
+	sRenderer->drawRectangle(rect, SDL_Color{ 0,0,0,255 });
 }
 
 void Scene::renderEnd()

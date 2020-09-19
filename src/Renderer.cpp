@@ -49,7 +49,7 @@ void Renderer::initWindow()
 
 void Renderer::initRenderer()
 {
-	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_SOFTWARE);
+	mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
 }
 
 
@@ -64,9 +64,34 @@ void Renderer::windowRefresh()
 	SDL_RenderPresent(mRenderer);
 }
 
+void Renderer::drawRectangle(SDL_Rect rect, SDL_Color color, bool outline)
+{
+	//SDL_Rect rectangle = rect;
+	/*SDL_Color color = _color;*/
+
+	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
+
+	if (outline)
+	{
+		SDL_RenderFillRect(mRenderer, &rect);
+	}
+
+	SDL_RenderDrawRect(mRenderer, &rect);
+}
+
 void Renderer::drawRectangle()
 {
+	SDL_Rect rect = {200, 200, 200, 200};
+	SDL_Color color = {};
 
+	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
+
+	//if (outline)
+	//{
+	//	SDL_RenderFillRect(mRenderer, &rect);
+	//}
+
+	SDL_RenderDrawRect(mRenderer, &rect);
 }
 
 void Renderer::drawCircle()
