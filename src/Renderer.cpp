@@ -71,27 +71,23 @@ void Renderer::drawRectangle(SDL_Rect rect, SDL_Color color, bool outline)
 
 	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
 
-	if (outline)
+	if (!outline)
 	{
 		SDL_RenderFillRect(mRenderer, &rect);
 	}
-
 	SDL_RenderDrawRect(mRenderer, &rect);
+
+	SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 }
 
 void Renderer::drawRectangle()
 {
 	SDL_Rect rect = {200, 200, 200, 200};
-	SDL_Color color = {};
 
-	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
-
-	//if (outline)
-	//{
-	//	SDL_RenderFillRect(mRenderer, &rect);
-	//}
-
+	SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
 	SDL_RenderDrawRect(mRenderer, &rect);
+
+	SDL_SetRenderDrawColor(mRenderer, 0,0,0,255);
 }
 
 void Renderer::drawCircle()
