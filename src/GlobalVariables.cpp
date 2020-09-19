@@ -8,7 +8,7 @@ GlobalVariables::GlobalVariables()
 {
 
 	quiteEngineLoop = true;
-	frameRate = -1;
+	frameRate = 60;
 	windowWidth = 960;
 	windowHeight = 540;
 }

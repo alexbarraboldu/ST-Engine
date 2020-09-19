@@ -91,7 +91,6 @@ void Scene::renderBegin()
 void Scene::render()
 {
 	SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
-	printf("\n ESTO ES UNA SCENE");
 }
 
 void Scene::renderEnd()

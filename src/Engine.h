@@ -19,6 +19,7 @@ public:
 	void destroy();
 
 	double clockToMilliseconds(clock_t ticks);
+	double clockToNanoseconds(clock_t ticks);
 	void doStuff();
 
 private:
