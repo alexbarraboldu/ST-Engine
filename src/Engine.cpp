@@ -1,5 +1,6 @@
-#include "Engine.h"
 #include "string"
+
+#include "Engine.h"
 
 Engine::Engine() : Id()
 {
@@ -48,9 +49,6 @@ void Engine::engineLoop()
 
 		//printf("\nDelta Time (ms): %d", deltaTime);
 		//printf("\nDelta Time (s): %.3f", deltaTime / 1000.0f);
-
-		//printf("\n\nTotal Time (s): %d", externalTimer);
-		//printf("\nTotal time (min): %d", int(externalTimer / 60.0f));
 
 		//printf("\n\nFPS: %d", FPS);
 		//printf("\nTotal FPS: %d", totalFrames);

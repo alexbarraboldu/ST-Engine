@@ -1,6 +1,7 @@
 #include <SDL.h>
 
 #include "GlobalVariables.h"
+#include "Macros.h"
 
 GlobalVariables* GlobalVariables::instance = NULL;
 
@@ -8,9 +9,9 @@ GlobalVariables::GlobalVariables()
 {
 
 	quiteEngineLoop = true;
-	frameRate = 244;
-	windowWidth = 960;
-	windowHeight = 540;
+	frameRate = FPS_UNLIMITED;
+	windowWidth = W_WIDTH_720;
+	windowHeight = W_HEIGHT_720;
 }
 
 GlobalVariables::~GlobalVariables() {}
