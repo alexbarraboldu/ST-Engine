@@ -24,17 +24,10 @@ public:
 	void doStuff();
 
 private:
-	//double frameRate;
-	clock_t timer;
-	clock_t time;
 	clock_t deltaTime;
 
 	unsigned int totalFrames;
 	unsigned int FPS;
-
-	int Timer;
-	int externalTimer;
-
 	unsigned int timesUnderDeltaTime;
 
 	bool quitEngineLoop;

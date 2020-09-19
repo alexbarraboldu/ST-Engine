@@ -7,14 +7,11 @@ Engine::Engine() : Id()
 
 	id = GlobalVar::FRAME_RATE | GlobalVar::QUITE_ENGINE_LOOP;
 
-	timer = 0;
-	time = 0;
 	deltaTime = 1000000000.0f / sGlobalVariables->getFrameRate(id);
-	totalFrames = 0;
-	FPS = 1000000000.0f / sGlobalVariables->getFrameRate(id);
 
-	Timer = 0;
-	externalTimer = -1;
+	totalFrames = 0;
+
+	FPS = 1000000000.0f / sGlobalVariables->getFrameRate(id);
 
 	timesUnderDeltaTime = 0;
 
@@ -33,21 +30,6 @@ void Engine::engineLoop()
 	while (sGlobalVariables->getQuiteEngineLoop(id) == true)
 	{
 		std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
-
-		if (beginFrame.time_since_epoch().count() / 1000000000.0f >= Timer)
-		{
-			if (Timer == 0)
-			{
-				Timer = beginFrame.time_since_epoch().count() / 1000000000.0f;
-			}
-			else
-			{
-				Timer = beginFrame.time_since_epoch().count() / 1000000000.0f + 1;
-				externalTimer++;
-				timer = externalTimer;
-			}
-		}
-
 
 		////----------------------------------------------
 		////
@@ -76,10 +58,8 @@ void Engine::engineLoop()
 
 		Dsum += deltaTime;
 
-
-		if (/*timer >= 1*/ Dsum >= 1000000000.0f)	//	PARA SABER CUANTOS Frames POR SEGUNDO
+		if (Dsum >= 1000000000.0f)	//	PARA SABER CUANTOS Frames POR SEGUNDO
 		{
-			timer = 0;
 			Dsum = 0;
 			FPS = totalFrames;
 			totalFrames = 0;
