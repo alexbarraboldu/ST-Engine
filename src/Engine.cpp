@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "string"
 
 Engine::Engine() : Id()
 {
@@ -31,7 +32,7 @@ void Engine::engineLoop()
 	{
 		std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
 
-		system("cls");
+		//system("cls");
 
 		if (beginFrame.time_since_epoch().count() / 1000000000 >= Timer)
 		{
@@ -47,8 +48,8 @@ void Engine::engineLoop()
 			}
 		}
 
-		//----------------------------------------------
-		//
+		////----------------------------------------------
+		////
 
 		sInput->updateEvents();
 
@@ -58,18 +59,18 @@ void Engine::engineLoop()
 
 		sSceneDirector->mCurrentScene->onRender();
 
-		//	
-		//----------------------------------------------
+		////
+		////----------------------------------------------
 
-		printf("\nDelta Time (ms): %d", deltaTime);
-		printf("\nDelta Time (s): %.3f", deltaTime / 1000.0f);
+		//printf("\nDelta Time (ms): %d", deltaTime);
+		//printf("\nDelta Time (s): %.3f", deltaTime / 1000.0f);
 
-		printf("\n\nTotal Time (s): %d", externalTimer);
-		printf("\nTotal time (min): %d", int(externalTimer / 60.0f));
+		//printf("\n\nTotal Time (s): %d", externalTimer);
+		//printf("\nTotal time (min): %d", int(externalTimer / 60.0f));
 
-		printf("\n\nFPS: %d", FPS);
-		printf("\nTotal FPS: %d", totalFrames);
-		printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
+		//printf("\n\nFPS: %d", FPS);
+		//printf("\nTotal FPS: %d", totalFrames);
+		//printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
 
 		totalFrames++;
 
@@ -78,6 +79,11 @@ void Engine::engineLoop()
 			timer = 0;
 			FPS = totalFrames;
 			totalFrames = 0;
+
+			std::string title = "FPS: " + std::to_string(FPS);
+			title += " | DeltaTime: " + std::to_string(deltaTime / 1000.0f);
+
+			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
 
 		std::chrono::high_resolution_clock::time_point endFrame = std::chrono::high_resolution_clock::now();
