@@ -18,6 +18,7 @@ public:
 	void engineLoop();
 	void destroy();
 
+	double clockToSeconds(clock_t ticks);
 	double clockToMilliseconds(clock_t ticks);
 	double clockToNanoseconds(clock_t ticks);
 	void doStuff();

@@ -34,9 +34,6 @@ void Engine::engineLoop()
 	{
 		std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
 
-		Dsum += deltaTime;
-		totalFrames++;
-
 		if (beginFrame.time_since_epoch().count() / 1000000000.0f >= Timer)
 		{
 			if (Timer == 0)
@@ -77,6 +74,8 @@ void Engine::engineLoop()
 		//printf("\nTotal FPS: %d", totalFrames);
 		//printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
 
+		Dsum += deltaTime;
+
 
 		if (/*timer >= 1*/ Dsum >= 1000000000.0f)	//	PARA SABER CUANTOS Frames POR SEGUNDO
 		{
@@ -86,8 +85,9 @@ void Engine::engineLoop()
 			totalFrames = 0;
 
 			std::string title = "FPS: " + std::to_string(FPS);
+			title += " | DeltaTime (s): " + std::to_string(deltaTime / 1000000000.0f);
 			title += " | DeltaTime (ms): " + std::to_string(deltaTime / 1000000.0f);
-			title += " | Dsum (ns): " + std::to_string(Dsum);
+			title += " | DeltaTime (µs): " + std::to_string(deltaTime / 1000.0f);
 
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
@@ -95,16 +95,24 @@ void Engine::engineLoop()
 		std::chrono::high_resolution_clock::time_point endFrame = std::chrono::high_resolution_clock::now();
 		deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endFrame - beginFrame).count();
 
+
 		if (deltaTime < int(1000000000.0f / sGlobalVariables->getFrameRate(id)) && sGlobalVariables->getFrameRate(id) != -1)
 		{
 			timesUnderDeltaTime++;
 
-			std::this_thread::sleep_for(std::chrono::nanoseconds((long)(1000000000.0f / sGlobalVariables->getFrameRate(id) - (deltaTime / 1000000000.0f))));
+			std::this_thread::sleep_for(std::chrono::nanoseconds((long)(1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime)));
 
 			// Cambias el deltaTime para ajustarse a la velocidad de simulación deseada
-			deltaTime += 1000000000.0f / sGlobalVariables->getFrameRate(id) - (deltaTime / 1000000000.0f);
+			deltaTime += 1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime;
 		}
+
+		totalFrames++;
 	}
+}
+
+double Engine::clockToSeconds(clock_t ticks) {
+	// units/(units/time) => time (seconds) = seconds
+	return (ticks / (double)CLOCKS_PER_SEC);
 }
 
 double Engine::clockToMilliseconds(clock_t ticks) {
