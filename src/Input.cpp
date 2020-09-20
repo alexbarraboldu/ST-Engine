@@ -65,15 +65,20 @@ void Input::updateEvents()
 		}
 	}
 
-	if (sInput->isKeyPressed(SDL_SCANCODE_F11))	//	HACER VENTANA FULLSCREEN CON F11
+	if (isKeyPressed(SDL_SCANCODE_F))
 	{
-		if (SDL_GetWindowFlags(mWindow) & SDL_WINDOW_FULLSCREEN)
+		sGlobalVariables->setQuiteEngineLoop(false, id);
+	}
+
+	if (isKeyPressed(SDL_SCANCODE_F11))	//	HACER VENTANA FULLSCREEN CON F11
+	{
+		if (SDL_GetWindowFlags(mWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP)
 		{
 			SDL_SetWindowFullscreen(mWindow, 0);
 		}
 		else
 		{
-			SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN);
+			SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
 		}
 	}
 }
