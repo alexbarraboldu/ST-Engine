@@ -18,7 +18,7 @@
 
 #define W_HEIGHT_480 480	//	VGA
 #define W_HEIGHT_720 720	//	HD
-#define W_WIDTH_900 900		//	HD+
+#define W_HEIGHT_900 900		//	HD+
 #define W_HEIGHT_1080 1080	//	FHD
 #define W_HEIGHT_1440 1440	//	QHD
 
