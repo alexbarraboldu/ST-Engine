@@ -10,8 +10,8 @@ GlobalVariables::GlobalVariables()
 
 	quiteEngineLoop = true;
 	frameRate = FPS_UNLIMITED;
-	windowWidth = W_WIDTH_720;
-	windowHeight = W_HEIGHT_720;
+	windowWidth = W_WIDTH_480;
+	windowHeight = W_HEIGHT_480;
 }
 
 GlobalVariables::~GlobalVariables() {}
