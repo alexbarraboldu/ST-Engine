@@ -107,11 +107,11 @@ void Engine::doStuff()
 {
 	for (size_t i = 0; i < 100000; i++)
 	{
-		int lmao;
-		int* lol = &lmao;
-		lmao = 10;
+		int lmao = i;
+		int* lol = new int;
+		*lol = lmao;
+		lmao++;
 
-		lol = NULL;
 		delete lol;
 	}
 }
