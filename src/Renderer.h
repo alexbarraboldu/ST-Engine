@@ -27,7 +27,6 @@ public:
 	void windowRefresh();
 
 	void drawRectangle(SDL_Rect rect, SDL_Color color, bool outline = false);
-	void drawRectangle();
 	void drawCircle();
 
 	void drawSprite();
