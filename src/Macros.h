@@ -10,16 +10,16 @@
 #define FPS_244 244
 
 //	WINDOW SIZES
-#define W_WIDTH_480 640
-#define W_WIDTH_720 1280
-#define W_WIDTH_900 1600 
-#define W_WIDTH_1080 1920
-#define W_WIDTH_1440 2560
+#define W_WIDTH_480 640		//	VGA
+#define W_WIDTH_720 1280	//	HD
+#define W_WIDTH_900 1600	//	HD+
+#define W_WIDTH_1080 1920	//	FHD
+#define W_WIDTH_1440 2560	//	QHD
 
 #define W_HEIGHT_480 480	//	VGA
 #define W_HEIGHT_720 720	//	HD
 #define W_WIDTH_900 900		//	HD+
 #define W_HEIGHT_1080 1080	//	FHD
-#define W_HEIGHT_1440 1440
+#define W_HEIGHT_1440 1440	//	QHD
 
 #endif // !MACROS_H
