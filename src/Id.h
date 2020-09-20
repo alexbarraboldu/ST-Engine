@@ -5,7 +5,7 @@
 
 class  Id {
 public:
-	Id() {};
+	Id() : id(0) {};
 	~Id() {};
 
 protected:
