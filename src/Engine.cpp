@@ -8,11 +8,11 @@ Engine::Engine() : Id()
 
 	id = GlobalVar::FRAME_RATE | GlobalVar::QUITE_ENGINE_LOOP;
 
-	deltaTime = 1000000000.0f / sGlobalVariables->getFrameRate(id);
+	deltaTime = (clock_t)(1000000000.0f / sGlobalVariables->getFrameRate(id));
 
 	totalFrames = 0;
 
-	FPS = 1000000000.0f / sGlobalVariables->getFrameRate(id);
+	FPS = /*1000000000 / sGlobalVariables->getFrameRate(id);*/ 0;
 
 	timesUnderDeltaTime = 0;
 
@@ -75,14 +75,14 @@ void Engine::engineLoop()
 		deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(endFrame - beginFrame).count();
 
 
-		if (deltaTime < int(1000000000.0f / sGlobalVariables->getFrameRate(id)) && sGlobalVariables->getFrameRate(id) != -1)
+		if (deltaTime < (int)(1000000000.0f / sGlobalVariables->getFrameRate(id)) && sGlobalVariables->getFrameRate(id) != -1)
 		{
 			timesUnderDeltaTime++;
 
 			std::this_thread::sleep_for(std::chrono::nanoseconds((long)(1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime)));
 
 			// Cambias el deltaTime para ajustarse a la velocidad de simulación deseada
-			deltaTime += 1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime;
+			deltaTime += (clock_t)(1000000000.0f / sGlobalVariables->getFrameRate(id) - deltaTime);
 		}
 
 		totalFrames++;
