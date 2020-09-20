@@ -4,6 +4,8 @@
 SceneGame::SceneGame() : Scene()
 {
 	id = GlobalVar::NO_PERMISSION;
+	soundID = 0;
+	mPhase = 0;
 }
 
 SceneGame::~SceneGame() {}
