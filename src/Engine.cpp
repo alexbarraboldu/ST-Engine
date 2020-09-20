@@ -43,6 +43,7 @@ void Engine::engineLoop()
 
 		sSceneDirector->mCurrentScene->onRender();
 
+
 		////
 		////----------------------------------------------
 
@@ -121,4 +122,7 @@ void Engine::destroy()
 	SDL_DestroyWindow(sRenderer->getWindow());
 
 	SDL_DestroyRenderer(sRenderer->getRenderer());
+
+	
+	deleteSingletons();
 }

@@ -9,6 +9,7 @@
 //#include "SoundManager.h"
 
 void initializeSingletons();
+void deleteSingletons();
 
 extern GlobalVariables* sGlobalVariables;
 extern Input* sInput;

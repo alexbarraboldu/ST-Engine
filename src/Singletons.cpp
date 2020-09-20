@@ -17,3 +17,24 @@ void initializeSingletons() {
 
 	sInput->setWindow(sRenderer->getWindow());
 }
+
+void deleteSingletons() {
+	delete sGlobalVariables->getInstance();
+	sGlobalVariables = NULL;
+
+	delete sInput->getInstance();
+	sInput = NULL;
+
+	delete sRenderer->getInstance();
+	sRenderer = NULL;
+
+	//delete sResourceManager->getInstance();
+	//sResourceManager = NULL;
+
+	delete sSceneDirector->getInstance();
+	sSceneDirector = NULL;
+
+	//delete sSoundManager->getInstance();
+	//sSoundManager = NULL;
+
+}
