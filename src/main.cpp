@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 
 	engine1->engineLoop();
 	engine1->destroy();
+	delete engine1;
 
 	SDL_Quit();
 
