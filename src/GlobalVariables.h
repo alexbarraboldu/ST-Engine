@@ -47,7 +47,7 @@ inline bool GlobalVariables::getQuiteEngineLoop(unsigned int flags) try
 	throw 0;
 
 }
-catch (int t)
+catch (bool t)
 {
 
 }
@@ -60,7 +60,7 @@ inline double GlobalVariables::getFrameRate(unsigned int flags) try
 	}
 	throw 0;
 }
-catch (int t)
+catch (double t)
 {
 
 }
