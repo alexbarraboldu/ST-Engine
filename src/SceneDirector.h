@@ -7,7 +7,7 @@
 #include "SceneMenu.h"
 #include "SceneGame.h"
 
-class SceneDirector : Id {
+class SceneDirector : public Id {
 public:
 	enum SceneEnum {
 		PRE_LOAD, MAIN_MENU, GAME, LAST_NO_USE
