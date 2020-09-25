@@ -12,7 +12,7 @@ Engine::Engine() : Id()
 
 	totalFrames = 0;
 
-	FPS = /*1000000000 / sGlobalVariables->getFrameRate(id);*/ 0;
+	FPS = 0;
 
 	timesUnderDeltaTime = 0;
 
@@ -43,10 +43,8 @@ void Engine::engineLoop()
 
 		sSceneDirector->mCurrentScene->onRender();
 
-
 		////
 		////----------------------------------------------
-
 
 		//printf("\nDelta Time (ms): %d", deltaTime);
 		//printf("\nDelta Time (s): %.3f", deltaTime / 1000.0f);
@@ -104,16 +102,23 @@ double Engine::clockToNanoseconds(clock_t ticks) {
 	return (ticks / (double)CLOCKS_PER_SEC) * 1000000.0f;
 }
 
-void Engine::doStuff()
+void Engine::doStuff(bool a)
 {
 	for (size_t i = 0; i < 100000; i++)
 	{
 		int lmao = i;
-		int* lol = new int;
-		*lol = lmao;
-		lmao++;
+		if (a) {
+			int* lol = new int;
+			*lol = lmao;
+			lmao++;
 
-		delete lol;
+			delete lol;
+		}
+		else {
+			int* lol = &lmao;
+			lmao++;
+		}
+
 	}
 }
 
