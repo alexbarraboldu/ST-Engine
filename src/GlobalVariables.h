@@ -44,12 +44,12 @@ inline bool GlobalVariables::getQuiteEngineLoop(unsigned int flags) try
 	{
 		return quiteEngineLoop;
 	}
-	throw 0;
+	throw nullptr;
 
 }
 catch (bool t)
 {
-
+	return t;
 }
 
 inline double GlobalVariables::getFrameRate(unsigned int flags) try
@@ -58,11 +58,11 @@ inline double GlobalVariables::getFrameRate(unsigned int flags) try
 	{
 		return frameRate;
 	}
-	throw 0;
+	throw nullptr;
 }
 catch (double t)
 {
-
+	return t;
 }
 
 inline int GlobalVariables::getWindowWidth(unsigned int flags) try
@@ -71,11 +71,11 @@ inline int GlobalVariables::getWindowWidth(unsigned int flags) try
 	{
 		return windowWidth;
 	}
-	throw 0;
+	throw nullptr;
 }
 catch (int t)
 {
-
+	return t;
 }
 
 inline int GlobalVariables::getWindowHeight(unsigned int flags) try
@@ -84,11 +84,11 @@ inline int GlobalVariables::getWindowHeight(unsigned int flags) try
 	{
 		return windowHeight;
 	}
-	throw 0;
+	throw nullptr;
 }
 catch (int t)
 {
-
+	return t;
 }
 
 #endif // !GLOBAL_VARIABLES_H
