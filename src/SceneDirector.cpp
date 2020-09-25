@@ -1,4 +1,3 @@
-#include "SceneDirector.h"
 #include "Singletons.h"
 
 SceneDirector* SceneDirector::instance = NULL;
