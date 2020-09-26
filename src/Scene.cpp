@@ -5,6 +5,7 @@ Scene::Scene() : Id()
 {
 	mSceneLoaded = false;
 	mPutInStack = true;
+	mPreloadScene = true;
 	id = GlobalVar::NO_PERMISSION;
 }
 
@@ -23,7 +24,6 @@ void Scene::onLoad()
 	else if (mPreloadScene)
 	{
 		preLoad();
-		mPreloadScene = false;
 	}
 }
 
@@ -52,7 +52,9 @@ void Scene::onRender()
 
 void Scene::preLoad()
 {
-
+	if (mPreloadScene) mPreloadScene = false;
+	
+	sResourceManager->loadImage("cpp.png");
 }
 
 
@@ -86,17 +88,21 @@ void Scene::updateEnd(double deltaTime)
 
 void Scene::renderBegin()
 {
-
+	//	Aquí se carga el background
 }
 
 void Scene::render()
 {
-	//SDL_SetRenderDrawColor(sRenderer->getRenderer(), 255, 0, 0, 255);
+	//	Aquí se carga
 
 	sRenderer->drawRectangle(SDL_Rect{1280/2 - 200/2, 720/2 - 200 / 2, 200, 200}, SDL_Color{ 255,255,255,255 }, true);
 	
-	sRenderer->drawRectangle(SDL_Rect{200,200, 200, 200}, SDL_Color{ 255,255,255,255 });
+	sRenderer->drawLine(0, 0, 300, 300 , SDL_Color{ 255,255,255,255 });
 
+	sRenderer->drawPoint(20, 40, SDL_Color{ 255,255,255,255 });
+
+	sRenderer->drawSprite("cpp.png", SDL_Rect{10, 10, 200, 200});
+	sRenderer->drawSprite("cpp.png", SDL_Rect{100, 100, 400, 400});
 }
 
 void Scene::renderEnd()
