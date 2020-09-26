@@ -24,8 +24,10 @@ Engine::~Engine() {}
 
 void Engine::engineLoop()
 {
-	unsigned long Dsum = 0;
+	//unsigned long Dsum = 0;
 	unsigned int T = 0;
+
+	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
 
 	while (sGlobalVariables->getQuiteEngineLoop(id) == true)
 	{
@@ -52,9 +54,9 @@ void Engine::engineLoop()
 		//printf("\nTotal FPS: %d", totalFrames);
 		//printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
 
-		Dsum += deltaTime;
+		//Dsum += deltaTime;
 
-		if (Dsum >= 1000000000)	//	PARA SABER CUANTOS Frames POR SEGUNDO
+		if (std::chrono::high_resolution_clock::now() <= 1000000000)	//	PARA SABER CUANTOS Frames POR SEGUNDO
 		{
 			T++;
 			Dsum = 0;
