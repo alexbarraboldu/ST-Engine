@@ -47,19 +47,14 @@ void Engine::engineLoop()
 		////
 		////----------------------------------------------
 
-		//printf("\nDelta Time (ms): %d", deltaTime);
-		//printf("\nDelta Time (s): %.3f", deltaTime / 1000.0f);
+		totalFrames++;
 
-		//printf("\n\nFPS: %d", FPS);
-		//printf("\nTotal FPS: %d", totalFrames);
-		//printf("\nTimes deltaTime went under frameRate: %d", timesUnderDeltaTime);
+		std::chrono::high_resolution_clock::time_point lil = std::chrono::high_resolution_clock::now() - std::chrono::nanoseconds(1000000000);
 
-		//Dsum += deltaTime;
-
-		if (std::chrono::high_resolution_clock::now() <= 1000000000)	//	PARA SABER CUANTOS Frames POR SEGUNDO
+		if (lastTime <= lil)	//	PARA SABER CUANTOS Frames POR SEGUNDO
 		{
 			T++;
-			Dsum = 0;
+			lastTime = std::chrono::high_resolution_clock::now();
 			FPS = totalFrames;
 			totalFrames = 0;
 
@@ -73,7 +68,6 @@ void Engine::engineLoop()
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
 
-		totalFrames++;
 
 		//std::chrono::high_resolution_clock::time_point endFrame = std::chrono::high_resolution_clock::now();
 		deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - beginFrame).count();
@@ -86,7 +80,7 @@ void Engine::engineLoop()
 			std::this_thread::sleep_for(std::chrono::nanoseconds((1000000000 / sGlobalVariables->getFrameRate(id) - deltaTime)));
 
 			// Cambias el deltaTime para ajustarse a la velocidad de simulación deseada
-			//deltaTime += (clock_t)(1000000000 / sGlobalVariables->getFrameRate(id) - deltaTime);
+			deltaTime += (clock_t)(1000000000 / sGlobalVariables->getFrameRate(id) - deltaTime);
 		}
 
 

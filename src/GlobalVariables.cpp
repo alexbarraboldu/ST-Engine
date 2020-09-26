@@ -10,7 +10,7 @@ GlobalVariables::GlobalVariables()
 	if (instance != NULL) return;
 
 	quiteEngineLoop = true;
-	frameRate = FPS_UNLIMITED;
+	frameRate = FPS_60;
 	windowWidth = W_WIDTH_600;
 	windowHeight = W_HEIGHT_600;
 }
