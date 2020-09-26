@@ -12,7 +12,7 @@ public:
 
 	//	Setters
 	void setQuiteEngineLoop(bool b, unsigned int flags);
-	void setFrametRate(double d, unsigned int flags);
+	void setFrametRate(int d, unsigned int flags);
 	void setWindowWidth(unsigned int w, unsigned int flags);
 	void setWindowHeight(unsigned int h, unsigned int flags);
 	void setWindowWH(unsigned int w, unsigned int h, unsigned int flags);
@@ -21,7 +21,7 @@ public:
 	static GlobalVariables* getInstance();
 
 	bool getQuiteEngineLoop(unsigned int flags);
-	double getFrameRate(unsigned int flags);
+	int getFrameRate(unsigned int flags);
 	int getWindowWidth(unsigned int flags);
 	int getWindowHeight(unsigned int flags);
 
@@ -31,7 +31,7 @@ private:
 
 	//	GLOBAL VARIABLES
 	bool quiteEngineLoop;
-	double frameRate;
+	int frameRate;
 	int windowWidth, windowHeight;
 };
 
@@ -52,7 +52,7 @@ catch (bool t)
 	return t;
 }
 
-inline double GlobalVariables::getFrameRate(unsigned int flags) try
+inline int GlobalVariables::getFrameRate(unsigned int flags) try
 {
 	if (flags & GlobalVar::FRAME_RATE)
 	{
@@ -60,7 +60,7 @@ inline double GlobalVariables::getFrameRate(unsigned int flags) try
 	}
 	throw nullptr;
 }
-catch (double t)
+catch (int t)
 {
 	return t;
 }

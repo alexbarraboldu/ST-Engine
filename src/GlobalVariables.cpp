@@ -7,6 +7,7 @@ GlobalVariables* GlobalVariables::instance = NULL;
 
 GlobalVariables::GlobalVariables()
 {
+	if (instance != NULL) return;
 
 	quiteEngineLoop = true;
 	frameRate = FPS_UNLIMITED;
@@ -28,7 +29,7 @@ void GlobalVariables::setQuiteEngineLoop(bool b, unsigned int flags)
 	}
 }
 
-void GlobalVariables::setFrametRate(double d, unsigned int flags)
+void GlobalVariables::setFrametRate(int d, unsigned int flags)
 {
 	if (flags & GlobalVar::FRAME_RATE)
 	{
