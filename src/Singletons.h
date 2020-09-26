@@ -4,7 +4,7 @@
 #include "GlobalVariables.h"
 #include "Input.h"
 #include "Renderer.h"
-//#include "ResourceManager.h"
+#include "ResourceManager.h"
 #include "SceneDirector.h"
 //#include "SoundManager.h"
 
@@ -14,7 +14,7 @@ void deleteSingletons();
 extern GlobalVariables* sGlobalVariables;
 extern Input* sInput;
 extern Renderer* sRenderer;
-//extern ResourceManager* sResManager;
+extern ResourceManager* sResourceManager;
 extern SceneDirector* sSceneDirector;
 //extern SoundManager* sSndManager;
 
