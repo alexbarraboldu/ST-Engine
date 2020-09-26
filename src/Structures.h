@@ -1,6 +1,8 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 
+#include <SDL.h>
+
 typedef enum {
 
 	FRAME_RATE = 1,
@@ -12,5 +14,19 @@ typedef enum {
 	NO_PERMISSION = E << 1,
 
 } GlobalVar;
+
+
+struct Sprite {
+
+	Sprite(SDL_Texture* _texture)
+	{
+		texture = _texture;
+		rect = NULL;
+	}
+
+	SDL_Texture* texture;
+	SDL_Rect* rect;
+
+};
 
 #endif // !STRUCUTRES_H
