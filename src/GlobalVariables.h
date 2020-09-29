@@ -11,34 +11,40 @@ public:
 	~GlobalVariables();
 
 	//	Setters
-	void setQuiteEngineLoop(bool b, unsigned int flags);
-	void setFrametRate(int d, unsigned int flags);
-	void setWindowWidth(unsigned int w, unsigned int flags);
-	void setWindowHeight(unsigned int h, unsigned int flags);
-	void setWindowWH(unsigned int w, unsigned int h, unsigned int flags);
+	void setQuiteEngineLoop(bool b, unsigned short flags);
+	void setVSync(bool b, unsigned short flags);
+	void setFrametRate(int f, unsigned short flags);
+	void setWindowWidth(unsigned int w, unsigned short flags);
+	void setWindowHeight(unsigned int h, unsigned short flags);
+	void setWindowWH(unsigned int w, unsigned int h, unsigned short flags);
 
 	//	Getters
 	static GlobalVariables* getInstance();
 
-	bool getQuiteEngineLoop(unsigned int flags);
-	int getFrameRate(unsigned int flags);
-	int getWindowWidth(unsigned int flags);
-	int getWindowHeight(unsigned int flags);
+	bool getQuiteEngineLoop(unsigned short flags);
+	bool getVSync(unsigned short flags);
+	int getFrameRate(unsigned short flags);
+	int getWindowWidth(unsigned short flags);
+	int getWindowHeight(unsigned short flags);
 
 private:
 
 	static GlobalVariables* instance;
 
 	//	GLOBAL VARIABLES
-	bool quiteEngineLoop;
+	//	Integers
 	int frameRate;
 	int windowWidth, windowHeight;
+
+	//	Booleans
+	bool quiteEngineLoop;
+	bool VSync;
 };
 
 //-----------------------------
 //	SOLO DEFINICIONES DE GETTERS
 
-inline bool GlobalVariables::getQuiteEngineLoop(unsigned int flags) try
+inline bool GlobalVariables::getQuiteEngineLoop(unsigned short flags) try
 {
 	if (flags & GlobalVar::QUITE_ENGINE_LOOP)
 	{
@@ -52,7 +58,7 @@ catch (bool t)
 	return t;
 }
 
-inline int GlobalVariables::getFrameRate(unsigned int flags) try
+inline int GlobalVariables::getFrameRate(unsigned short flags) try
 {
 	if (flags & GlobalVar::FRAME_RATE)
 	{
@@ -65,7 +71,7 @@ catch (int t)
 	return t;
 }
 
-inline int GlobalVariables::getWindowWidth(unsigned int flags) try
+inline int GlobalVariables::getWindowWidth(unsigned short flags) try
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
@@ -78,7 +84,7 @@ catch (int t)
 	return t;
 }
 
-inline int GlobalVariables::getWindowHeight(unsigned int flags) try
+inline int GlobalVariables::getWindowHeight(unsigned short flags) try
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
@@ -90,5 +96,18 @@ catch (int t)
 {
 	return t;
 }
+
+inline bool GlobalVariables::getVSync(unsigned short flags) try
+{
+	if (flags & GlobalVar::VSYNC)
+	{
+		return VSync;
+	}
+}
+catch (bool t)
+{
+	return t;
+}
+
 
 #endif // !GLOBAL_VARIABLES_H

@@ -9,10 +9,12 @@ GlobalVariables::GlobalVariables()
 {
 	if (instance != NULL) return;
 
-	quiteEngineLoop = true;
 	frameRate = FPS_60;
 	windowWidth = W_WIDTH_600;
 	windowHeight = W_HEIGHT_600;
+
+	quiteEngineLoop = true;
+	VSync = false;
 }
 
 GlobalVariables::~GlobalVariables() {}
@@ -20,7 +22,7 @@ GlobalVariables::~GlobalVariables() {}
 
 //	Setters
 
-void GlobalVariables::setQuiteEngineLoop(bool b, unsigned int flags)
+void GlobalVariables::setQuiteEngineLoop(bool b, unsigned short flags)
 {
 	if (flags & GlobalVar::QUITE_ENGINE_LOOP)
 	{
@@ -29,7 +31,7 @@ void GlobalVariables::setQuiteEngineLoop(bool b, unsigned int flags)
 	}
 }
 
-void GlobalVariables::setFrametRate(int d, unsigned int flags)
+void GlobalVariables::setFrametRate(int d, unsigned short flags)
 {
 	if (flags & GlobalVar::FRAME_RATE)
 	{
@@ -37,7 +39,7 @@ void GlobalVariables::setFrametRate(int d, unsigned int flags)
 	}
 }
 
-void GlobalVariables::setWindowWidth(unsigned int w, unsigned int flags)
+void GlobalVariables::setWindowWidth(unsigned int w, unsigned short flags)
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
@@ -45,7 +47,7 @@ void GlobalVariables::setWindowWidth(unsigned int w, unsigned int flags)
 	}
 }
 
-void GlobalVariables::setWindowHeight(unsigned int h, unsigned int flags)
+void GlobalVariables::setWindowHeight(unsigned int h, unsigned short flags)
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
@@ -53,12 +55,20 @@ void GlobalVariables::setWindowHeight(unsigned int h, unsigned int flags)
 	}
 }
 
-void GlobalVariables::setWindowWH(unsigned int w, unsigned int h, unsigned int flags)
+void GlobalVariables::setWindowWH(unsigned int w, unsigned int h, unsigned short flags)
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
 		windowWidth = w;
 		windowHeight = h;
+	}
+}
+
+void GlobalVariables::setVSync(bool b, unsigned short flags)
+{
+	if (flags & GlobalVar::VSYNC)
+	{
+		VSync = b;
 	}
 }
 
