@@ -163,14 +163,16 @@ void Renderer::drawFillCircleWithPoints(int x, int y, int d, SDL_Color color)
 
 void Renderer::drawSprite(const char* name , SDL_Rect rect)
 {
-	//if (name);
+	////if (name);
 
-	int ID = sResourceManager->getSpriteID(name);
+	//int ID = sResourceManager->getSpriteID(name);
 
-	Sprite* spr = sResourceManager->getSpriteByID(ID);
-	spr->rect = &rect;
+	//Sprite* spr = sResourceManager->getSpriteByID(ID);
+	//spr->rect = &rect;
 
-	SDL_RenderCopy(mRenderer, spr->texture, NULL, spr->rect);
+	//SDL_RenderCopy(mRenderer, spr->texture, NULL, spr->rect);
+	
+	SDL_RenderCopy(mRenderer, sResourceManager->getSpriteByID(sResourceManager->getSpriteID(name))->texture,NULL, &rect);
 }
 
 void Renderer::drawText()
