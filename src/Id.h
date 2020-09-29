@@ -9,7 +9,7 @@ public:
 	~Id() {};
 
 protected:
-	unsigned int id;
+	unsigned short id;
 };
 
 #endif // !ID_H
