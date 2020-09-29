@@ -50,9 +50,9 @@ private:
 
 	SDL_Texture* mRenderTexture;
 
-	SDL_Surface* mScreenSurface;
+//	SDL_Surface* mScreenSurface;
 
-	SDL_Surface* auxSurface;
+//	SDL_Surface* auxSurface;
 
 };
 

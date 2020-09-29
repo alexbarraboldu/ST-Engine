@@ -6,15 +6,11 @@
 
 #include "Singletons.h"
 
-//#include <SDL.h>
-//#include "Id.h"
-
 class Engine : Id {
 public:
 	Engine();
 	~Engine();
 
-	//void initSingletons();
 	void engineLoop();
 	void destroy();
 
