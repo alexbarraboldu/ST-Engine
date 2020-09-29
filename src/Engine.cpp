@@ -8,9 +8,9 @@ Engine::Engine() : Id()
 
 	id = GlobalVar::FRAME_RATE | GlobalVar::QUITE_ENGINE_LOOP;
 
-	deltaTime = 0; /* (clock_t)(1000000000.0f / sGlobalVariables->getFrameRate(id))*/;
+	//deltaTime = 1000.0f / sGlobalVariables->getFrameRate(id);
 
-	totalFrames = 0;
+	//totalFrames = 0;
 
 	FPS = 0;
 
@@ -24,14 +24,23 @@ Engine::~Engine() {}
 
 void Engine::engineLoop()
 {
-	//unsigned long Dsum = 0;
 	unsigned int T = 0;
 
-	std::chrono::high_resolution_clock::time_point lastTime = std::chrono::high_resolution_clock::now();
+	using dsec = std::chrono::duration<double>;
+	//auto invFpsLimit = std::chrono::duration_cast<std::chrono::system_clock::duration>(dsec{1./sGlobalVariables->getFrameRate(id)});
+	auto invFpsLimit = std::chrono::round<std::chrono::system_clock::duration>(dsec{1./sGlobalVariables->getFrameRate(id)});
+	auto m_BeginFrame = std::chrono::system_clock::now();
+	auto m_EndFrame = m_BeginFrame + invFpsLimit;
+	unsigned frame_count_per_second = 0;
+	auto prev_time_in_seconds = std::chrono::time_point_cast<std::chrono::seconds>(m_BeginFrame);
+
+	std::string title = "";
+
+	std::chrono::high_resolution_clock::duration m_DeltaTime;
 
 	while (sGlobalVariables->getQuiteEngineLoop(id) == true)
 	{
-		std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
+	//	std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
 
 		////----------------------------------------------
 		////
@@ -40,6 +49,8 @@ void Engine::engineLoop()
 
 		sSceneDirector->mCurrentScene->onLoad();
 
+		//doStuff(true);
+
 		sSceneDirector->mCurrentScene->onUpdate(clockToNanoseconds(deltaTime));
 
 		sSceneDirector->mCurrentScene->onRender();
@@ -47,43 +58,34 @@ void Engine::engineLoop()
 		////
 		////----------------------------------------------
 
-		totalFrames++;
+		auto time_in_seconds = std::chrono::time_point_cast<std::chrono::seconds>(std::chrono::system_clock::now());
+		++frame_count_per_second;
 
-		std::chrono::high_resolution_clock::time_point lil = std::chrono::high_resolution_clock::now() - std::chrono::nanoseconds(1000000000);
-
-		if (lastTime <= lil)	//	PARA SABER CUANTOS Frames POR SEGUNDO
+		if (time_in_seconds > prev_time_in_seconds)	//	Frames per Second
 		{
-			T++;
-			lastTime = std::chrono::high_resolution_clock::now();
-			FPS = totalFrames;
-			totalFrames = 0;
+			FPS = frame_count_per_second;
+			frame_count_per_second = 0;
+			prev_time_in_seconds = time_in_seconds;
 
-			std::string title = "FPS: " + std::to_string(FPS);
-			title += " | DeltaTime (s): " + std::to_string(deltaTime / 1000000000.0f);
-			title += " | DeltaTime (ms): " + std::to_string(deltaTime / 1000000.0f);
-			title += " | DeltaTime (µs): " + std::to_string(deltaTime / 1000.0f);
-			title += " | DeltaTime (ns): " + std::to_string(deltaTime);
-			title += " | Time: " + std::to_string(T);
+			T++;
+
+			title = "FPS: " + std::to_string(FPS);
+			title += " | DeltaTime (s): " + std::to_string(1.0f / FPS);
+			title += " | DeltaTime (ms): " + std::to_string(1000.0f / FPS);
+			title += " | Time (s): " + std::to_string(T);
+			title += " | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime);
 
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
 
-
-		//std::chrono::high_resolution_clock::time_point endFrame = std::chrono::high_resolution_clock::now();
-		deltaTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - beginFrame).count();
-
-
-		if (deltaTime < 1000000000 / sGlobalVariables->getFrameRate(id) && sGlobalVariables->getFrameRate(id) != -1)
+		//	FPS Manager
+		if (m_EndFrame > m_BeginFrame && invFpsLimit != dsec(1) )
 		{
+			std::this_thread::sleep_until(m_EndFrame);
 			timesUnderDeltaTime++;
-
-			std::this_thread::sleep_for(std::chrono::nanoseconds((1000000000 / sGlobalVariables->getFrameRate(id) - deltaTime)));
-
-			// Cambias el deltaTime para ajustarse a la velocidad de simulación deseada
-			deltaTime += (clock_t)(1000000000 / sGlobalVariables->getFrameRate(id) - deltaTime);
 		}
-
-
+		m_BeginFrame = m_EndFrame;
+		m_EndFrame = m_BeginFrame + invFpsLimit;
 	}
 }
 
