@@ -27,7 +27,6 @@ void Engine::engineLoop()
 	unsigned int T = 0;
 
 	using dsec = std::chrono::duration<double>;
-	//auto invFpsLimit = std::chrono::duration_cast<std::chrono::system_clock::duration>(dsec{1./sGlobalVariables->getFrameRate(id)});
 	auto invFpsLimit = std::chrono::round<std::chrono::system_clock::duration>(dsec{1./sGlobalVariables->getFrameRate(id)});
 	auto m_BeginFrame = std::chrono::system_clock::now();
 	auto m_EndFrame = m_BeginFrame + invFpsLimit;
@@ -126,10 +125,5 @@ void Engine::doStuff(bool a)
 
 void Engine::destroy()
 {
-	SDL_DestroyWindow(sRenderer->getWindow());
-
-	SDL_DestroyRenderer(sRenderer->getRenderer());
-
-	
 	deleteSingletons();
 }

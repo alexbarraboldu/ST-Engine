@@ -10,12 +10,18 @@ Renderer::Renderer() : Id()
 	id = GlobalVar::WIDTH_HEIGHT;
 	mWindow = NULL;
 	mRenderer = NULL;
+	mRenderTexture = NULL;
 
 	initWindow();
 	initRenderer();
 }
 
-Renderer::~Renderer() {}
+Renderer::~Renderer()
+{
+	SDL_DestroyTexture(mRenderTexture);
+	SDL_DestroyRenderer(mRenderer);
+	SDL_DestroyWindow(mWindow);
+}
 
 
 //	SETTERS
@@ -46,11 +52,6 @@ void Renderer::initWindow()
 
 	mWindow = SDL_CreateWindow("Engine ABB 0.0.1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, sGlobalVariables->getWindowWidth(id), sGlobalVariables->getWindowHeight(id), SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_RESIZABLE);
 
-	//	NO IMPLEMENTAR
-	//mScreenSurface = SDL_GetWindowSurface(mWindow);
-	//	auxSurface = IMG_Load("cpp.png");
-	
-
 	//	PARA HACER RESIZE DE VENTANA
 	/*SDL_RenderSetLogicalSize(mRenderer, 400, 400);*/
 }
@@ -60,9 +61,8 @@ void Renderer::initRenderer()
 	mRenderer = SDL_CreateRenderer(mWindow, -1, 0);
 
 
-	//	ESTA TEXTURA ES SE VA ACUTALIZANDO
-	mRenderTexture = SDL_CreateTextureFromSurface(mRenderer, auxSurface);
-
+	//	ESTA TEXTURA ES LA QUE SE VA ACUTALIZANDO
+	//mRenderTexture = SDL_CreateTextureFromSurface(mRenderer, auxSurface);
 }
 
 
@@ -163,15 +163,6 @@ void Renderer::drawFillCircleWithPoints(int x, int y, int d, SDL_Color color)
 
 void Renderer::drawSprite(const char* name , SDL_Rect rect)
 {
-	////if (name);
-
-	//int ID = sResourceManager->getSpriteID(name);
-
-	//Sprite* spr = sResourceManager->getSpriteByID(ID);
-	//spr->rect = &rect;
-
-	//SDL_RenderCopy(mRenderer, spr->texture, NULL, spr->rect);
-	
 	SDL_RenderCopy(mRenderer, sResourceManager->getSpriteByID(sResourceManager->getSpriteID(name))->texture,NULL, &rect);
 }
 
