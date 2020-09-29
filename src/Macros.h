@@ -2,7 +2,7 @@
 #define MACROS_H
 
 //	FPS
-#define FPS_UNLIMITED -1
+#define FPS_UNLIMITED 1
 #define FPS_30 30
 #define FPS_60 60
 #define FPS_120 120
