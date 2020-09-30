@@ -14,9 +14,9 @@ public:
 	//	Getters
 	static Renderer* getInstance();
 
-	inline SDL_Window* getWindow() { return mWindow; };
-	inline SDL_Renderer* getRenderer() { return mRenderer; };
-	inline SDL_Texture* getTexture() { return mRenderTexture; };
+	inline SDL_Window* getWindow() const { return mWindow; };
+	inline SDL_Renderer* getRenderer() const { return mRenderer; };
+	inline SDL_Texture* getTexture() const { return mRenderTexture; };
 
 	bool windowIsOpen();
 
