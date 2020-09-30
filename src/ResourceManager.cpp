@@ -23,14 +23,8 @@ void ResourceManager::loadImage(const char* filepath)
 
 	Sprite* auxSpr = new Sprite (SDL_CreateTextureFromSurface(sRenderer->getRenderer(), auxSurface));
 	
-	//if (true)
-	//{
-	//	
-	//}
-	////mSpriteMap[0];
 	mSpriteVector.push_back(auxSpr);
 	mSpriteMap.insert(std::pair<std::string, Sprite*>(filepath, auxSpr));
-
 }
 
 

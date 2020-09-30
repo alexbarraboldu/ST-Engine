@@ -9,7 +9,7 @@ GlobalVariables::GlobalVariables()
 {
 	if (instance != NULL) return;
 
-	frameRate = FPS_60;
+	frameRate = FPS_UNLIMITED;
 	windowWidth = W_WIDTH_600;
 	windowHeight = W_HEIGHT_600;
 
