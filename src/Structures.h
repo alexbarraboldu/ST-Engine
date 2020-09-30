@@ -16,7 +16,7 @@ typedef enum {
 } GlobalVar;
 
 
-typedef struct Sprite{
+struct Sprite{
 
 	Sprite(SDL_Texture* _texture)
 	{
