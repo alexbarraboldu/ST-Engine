@@ -11,7 +11,11 @@ SceneDirector::SceneDirector() : Id()
 	initScenes();
 }
 
-SceneDirector::~SceneDirector() {}
+SceneDirector::~SceneDirector()
+{
+	deleteScenes();
+	deleteSceneHistory();
+}
 
 SceneDirector* SceneDirector::getInstance()
 {
@@ -69,4 +73,21 @@ void SceneDirector::initScenes()
  	}
 
 	mCurrentScene = mScenes[SceneEnum::PRE_LOAD];
+}
+
+void SceneDirector::deleteScenes()
+{
+	for (size_t i = 0; i < mScenes.size(); i++)
+	{
+		delete mScenes[i];
+	}
+	mScenes.clear();
+}
+
+void SceneDirector::deleteSceneHistory()
+{
+	for (size_t i = 0; i < mSceneHistory.size(); i++)
+	{
+		mSceneHistory.pop();
+	}
 }

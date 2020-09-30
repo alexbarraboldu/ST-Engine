@@ -31,6 +31,8 @@ public:
 
 private:
 	void initScenes();
+	void deleteScenes();
+	void deleteSceneHistory();
 
 	static SceneDirector* instance;
 	std::vector<Scene*> mScenes;
