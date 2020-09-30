@@ -15,7 +15,6 @@ typedef enum {
 
 } GlobalVar;
 
-
 struct Sprite{
 
 	Sprite(SDL_Texture* _texture)
@@ -26,6 +25,18 @@ struct Sprite{
 
 	SDL_Texture* texture;
 	SDL_Rect* rect;
+
+};
+
+typedef enum class ButtonState {
+
+	PRESSED, RELEASED, NONE
+
+};
+
+typedef enum class ButtonType {
+
+	LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON, X1_BUTTON, X2_BUTTON
 
 };
 

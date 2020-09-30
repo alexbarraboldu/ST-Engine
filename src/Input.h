@@ -1,6 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
+#include <cstdio>
+
 #include "Id.h"
 
 class Input : Id {
@@ -15,9 +17,9 @@ public:
 	//	Getters
 	static Input* getInstance();
 
-	inline bool isKeyPressed(SDL_Scancode key) { return key_pressed[key]; };
-	inline bool isKeyDown(SDL_Scancode key) { return key_down[key]; };
-	inline bool isKeyReleased(SDL_Scancode key) { return key_released[key]; };
+	inline bool isKeyPressed(SDL_Scancode key) const { return key_pressed[key]; };
+	inline bool isKeyDown(SDL_Scancode key) const { return key_down[key]; };
+	inline bool isKeyReleased(SDL_Scancode key) const { return key_released[key]; };
 
 	//	Functions
 	void updateEvents();
@@ -29,13 +31,108 @@ private:
 
 	void keyPressedEvent(SDL_Scancode key);
 	void keyReleasedEvent(SDL_Scancode key);
+	void mousePressedEvent(SDL_MouseButtonEvent button);
+	void mouseReleasedEvent(SDL_MouseButtonEvent button);
 
 	static Input* instance;
 	SDL_Window* mWindow;
 
+	//	KEYBOARD MEMBERS
 	bool key_pressed[NGN_LAST_NO_USE];
 	bool key_down[NGN_LAST_NO_USE];
 	bool key_released[NGN_LAST_NO_USE];
+
+	//	MOUSE MEMBERS
+	unsigned short mouseX, mouseY;
+	ButtonState state_button;
+	ButtonType type_button;
+	bool single_click;
+	bool double_click;
 };
 
+inline void Input::keyPressedEvent(SDL_Scancode key)
+{
+	if (key != SDL_NUM_SCANCODES)
+	{
+		if (!key_down[key])
+		{
+			key_pressed[key] = true;
+		}
+		key_down[key] = true;
+		key_released[key] = false;
+	}
+}
+
+inline void Input::keyReleasedEvent(SDL_Scancode key)
+{
+	if (key != SDL_NUM_SCANCODES)
+	{
+		key_pressed[key] = false;
+		key_down[key] = false;
+		key_released[key] = true;
+	}
+}
+
+inline void Input::mousePressedEvent(SDL_MouseButtonEvent button)
+{
+		printf("\nMouse Pressed:");
+		
+		state_button = ButtonState::PRESSED;
+
+		switch (button.which)
+		{
+		case SDL_BUTTON_LEFT:
+			type_button = ButtonType::LEFT_BUTTON;
+			printf("\tLeft button");
+			break;
+		case SDL_BUTTON_MIDDLE:
+			type_button = ButtonType::MIDDLE_BUTTON;
+			printf("\tMiddle button");
+			break;
+		case SDL_BUTTON_RIGHT:
+			type_button = ButtonType::RIGHT_BUTTON;
+			printf("\tRight button");
+			break;
+		case SDL_BUTTON_X1:
+			type_button = ButtonType::X1_BUTTON;
+			printf("\tX1 button");
+			break;
+		case SDL_BUTTON_X2:
+			type_button = ButtonType::X2_BUTTON;
+			printf("\tX2 button");
+			break;
+		default:
+			break;
+		}
+
+		if (button.clicks == 2)
+		{
+			double_click = true;
+			printf("\tDoubleClick");
+		}
+		else
+		{
+			single_click = true;
+			printf("\tSingleClick");
+		}
+
+		mouseX = button.x;
+		mouseY = button.y;
+
+		printf("\nX: %d | Y: %d", mouseX, mouseY);
+}
+
+inline void Input::mouseReleasedEvent(SDL_MouseButtonEvent button)
+{
+		printf("\nMouse Released");
+
+		state_button = ButtonState::RELEASED;
+
+		mouseX = button.x;
+		mouseY = button.y;
+		
+		printf("\nX: %d | Y: %d", mouseX, mouseY);
+}
+
 #endif // !INPUT_H
+
