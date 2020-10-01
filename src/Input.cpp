@@ -46,9 +46,11 @@ void Input::updateEvents()
 		key_released[i] = false;
 	}
 	
-	mouseX, mouseY = 0;
-	state_button = ButtonState::NONE;
-	single_click, double_click = false;
+	//mouseX = 0, mouseY = 0;
+	//RelMouseX = 0, RelMouseY = 0;
+	//state_button = ButtonState::NONE;
+	//type_button = ButtonType::NONE;
+	//single_click = false, double_click = false;
 	//--------------------------------------------
 
 
@@ -69,14 +71,18 @@ void Input::updateEvents()
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			mousePressedEvent(event.button);
+		//	ActualMouseX = event.motion.xrel;
+		//	ActualMouseY = event.motion.yrel;
 			break;
 		case SDL_MOUSEBUTTONUP:
 			mouseReleasedEvent(event.button);
+			printf("ACTUAL X: %d", ActualMouseX);
 			break;
 		default:
 			break;
 		}
 	}
+
 
 	if (isKeyPressed(SDL_SCANCODE_ESCAPE))	//	CERRAR PROGRAMA
 	{
@@ -94,6 +100,7 @@ void Input::updateEvents()
 			SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
 		}
 	}
+
 }
 
 void Input::clearInput()

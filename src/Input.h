@@ -27,6 +27,19 @@ public:
 	void clearInput();
 	void closeWindow();
 
+	//	MOUSE MEMBERS
+	//	ON MOTION
+
+	//	ON CLICK
+	unsigned short mouseX, mouseY;
+	unsigned short RelMouseX, RelMouseY;
+	Sint32 ActualMouseX, ActualMouseY;
+	ButtonState state_button;
+	ButtonType type_button;
+	bool single_click;
+	bool double_click;
+	//	MOUSEWHEEL
+
 private:
 
 	void keyPressedEvent(SDL_Scancode key);
@@ -42,12 +55,7 @@ private:
 	bool key_down[NGN_LAST_NO_USE];
 	bool key_released[NGN_LAST_NO_USE];
 
-	//	MOUSE MEMBERS
-	unsigned short mouseX, mouseY;
-	ButtonState state_button;
-	ButtonType type_button;
-	bool single_click;
-	bool double_click;
+
 };
 
 inline void Input::keyPressedEvent(SDL_Scancode key)
@@ -79,7 +87,7 @@ inline void Input::mousePressedEvent(SDL_MouseButtonEvent button)
 		
 		state_button = ButtonState::PRESSED;
 
-		switch (button.which)
+		switch (button.button)
 		{
 		case SDL_BUTTON_LEFT:
 			type_button = ButtonType::LEFT_BUTTON;
@@ -108,18 +116,18 @@ inline void Input::mousePressedEvent(SDL_MouseButtonEvent button)
 		if (button.clicks == 2)
 		{
 			double_click = true;
-			printf("\tDoubleClick");
+			printf(" | DoubleClick");
 		}
-		else
+		else if (button.clicks == 1)
 		{
 			single_click = true;
-			printf("\tSingleClick");
+			printf(" | SingleClick");
 		}
 
 		mouseX = button.x;
 		mouseY = button.y;
 
-		printf("\nX: %d | Y: %d", mouseX, mouseY);
+		printf("\nX: %d | Y: %d\n", mouseX, mouseY);
 }
 
 inline void Input::mouseReleasedEvent(SDL_MouseButtonEvent button)
@@ -128,10 +136,10 @@ inline void Input::mouseReleasedEvent(SDL_MouseButtonEvent button)
 
 		state_button = ButtonState::RELEASED;
 
-		mouseX = button.x;
-		mouseY = button.y;
+		RelMouseX = button.x;
+		RelMouseY = button.y;
 		
-		printf("\nX: %d | Y: %d", mouseX, mouseY);
+		printf("\nX: %d | Y: %d", RelMouseX, RelMouseY);
 }
 
 #endif // !INPUT_H
