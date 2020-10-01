@@ -36,7 +36,7 @@ typedef enum class ButtonState {
 
 typedef enum class ButtonType {
 
-	LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON, X1_BUTTON, X2_BUTTON
+	LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON, X1_BUTTON, X2_BUTTON, NONE
 
 };
 
