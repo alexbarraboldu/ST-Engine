@@ -43,6 +43,8 @@ public:
 
 	void drawText();
 
+	void drawSelection(SDL_Rect rect);
+
 private:
 	static Renderer* instance;
 	SDL_Window* mWindow;
