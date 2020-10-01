@@ -94,6 +94,8 @@ void Scene::renderBegin()
 void Scene::render()
 {
 	//	Aquí se carga
+	
+/*	if (sInput->state_button == ButtonState::RELEASED)*/ sRenderer->drawSelection(SDL_Rect{sInput->mouseX, sInput->mouseY, sInput->RelMouseX - sInput->mouseX, sInput->RelMouseY - sInput->mouseY});
 
 	sRenderer->drawRectangle(SDL_Rect{1280/2 - 200/2, 720/2 - 200 / 2, 200, 200}, SDL_Color{ 255,255,255,255 }, true);
 	
