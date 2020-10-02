@@ -7,6 +7,17 @@ Input::Input() : Id()
 	if (instance != NULL) return;
 
 	id = GlobalVar::QUITE_ENGINE_LOOP;
+
+	//	ON MOTION
+	ActualMouseX = 0, ActualMouseY = 0;
+	//	ON CLICK
+	mouseX = 0, mouseY = 0;
+	RelMouseX = 0, RelMouseY = 0;
+	state_button = ButtonState::NONE;
+	type_button = ButtonType::NONE;
+	single_click = false, double_click = false;
+	//	MOUSEWHEEL
+
 }
 
 Input::~Input() {}
@@ -46,7 +57,7 @@ void Input::updateEvents()
 		key_released[i] = false;
 	}
 	
-	//mouseX = 0, mouseY = 0;
+	if (state_button == ButtonState::RELEASED) mouseX = 0, mouseY = 0;
 	//RelMouseX = 0, RelMouseY = 0;
 	//state_button = ButtonState::NONE;
 	//type_button = ButtonType::NONE;
@@ -71,12 +82,12 @@ void Input::updateEvents()
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			mousePressedEvent(event.button);
-		//	ActualMouseX = event.motion.xrel;
-		//	ActualMouseY = event.motion.yrel;
 			break;
 		case SDL_MOUSEBUTTONUP:
 			mouseReleasedEvent(event.button);
-			printf("ACTUAL X: %d", ActualMouseX);
+			break;
+		case SDL_MOUSEMOTION:
+			mouseMotionEvent(event.motion);
 			break;
 		default:
 			break;

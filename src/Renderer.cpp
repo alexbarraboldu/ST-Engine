@@ -178,8 +178,10 @@ void Renderer::drawText()
 
 void Renderer::drawSelection(SDL_Rect rect)
 {
-	SDL_Color color = {0, 0, 255, 255};
-	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
+	if (sInput->state_button == ButtonState::PRESSED) {
+		SDL_Color color = { 0, 0, 255, 255 };
+		SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
 
-	SDL_RenderDrawRect(mRenderer, &rect);
+		SDL_RenderDrawRect(mRenderer, &rect);
+	}
 }
