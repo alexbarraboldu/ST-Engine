@@ -102,7 +102,7 @@ void Renderer::drawRectangle(SDL_Rect rect, SDL_Color color, bool outline)
 	{
 		SDL_RenderFillRect(mRenderer, &rect);
 	}
-	SDL_RenderDrawRect(mRenderer, &rect);
+	else SDL_RenderDrawRect(mRenderer, &rect);
 
 	//SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
 }
@@ -112,62 +112,9 @@ void Renderer::drawCircle()
 
 }
 
-void Renderer::drawFillTrinagleWithPoints(int x, int y, int w, int h, SDL_Color color)
-{
-	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
-
-	int e = 0;
-	for (size_t i = y; i < y + h; i++)
-	{
-		for (size_t j = x; j < x + w - e; j++)
-		{
-			SDL_RenderDrawPoint(mRenderer, i, j);
-		}
-		e++;
-	}
-
-	//SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-}
-
-void Renderer::drawFillRectWithPoints(int x, int y, int w, int h, SDL_Color color)
-{
-	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
-
-	for (size_t i = y; i < y + h; i++)
-	{
-		for (size_t j = x; j < x + w ; j++)
-		{
-			SDL_RenderDrawPoint(mRenderer, i, j);
-		}
-	}
-
-	//SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-}
-
-void Renderer::drawFillCircleWithPoints(int x, int y, int d, SDL_Color color)
-{
-	SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
-
-	int e = 0;
-	for (size_t i = y; i < y + d; i++)
-	{
-		for (size_t j = (x + d / 2) - e; j < x + d; j++)
-		{
-			SDL_RenderDrawPoint(mRenderer, i, j);
-		}
-		e++;
-	}
-
-	//SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
-}
 
 void Renderer::drawSprite(const char* name , SDL_Rect rect)
 {
-	//int ID = sResourceManager->getSpriteID(name);
-	//Sprite* spr = sResourceManager->getSpriteByID(ID);
-	//spr->rect = &rect;
-
-	//SDL_RenderCopy(mRenderer, spr->texture,NULL, spr->rect);
 	SDL_RenderCopy(mRenderer, sResourceManager->getSpriteByID(sResourceManager->getSpriteID(name))->texture,NULL, &rect);
 }
 
@@ -178,10 +125,16 @@ void Renderer::drawText()
 
 void Renderer::drawSelection(SDL_Rect rect)
 {
-	if (sInput->state_button == ButtonState::PRESSED) {
-		SDL_Color color = { 0, 0, 255, 255 };
+	if (sInput->state_button == ButtonState::PRESSED && sInput->type_button == ButtonType::LEFT_BUTTON && sInput->mouseMoving) {
+		SDL_Color color = { 0, 120, 215, 255 };
+		
+		SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
+		SDL_RenderDrawRect(mRenderer, &rect);
+		
+		color = { 0, 120, 215, 100 };
+		SDL_SetRenderDrawBlendMode(mRenderer, SDL_BLENDMODE_BLEND);
 		SDL_SetRenderDrawColor(mRenderer, color.r, color.g, color.b, color.a);
 
-		SDL_RenderDrawRect(mRenderer, &rect);
+		SDL_RenderFillRect(mRenderer, &rect);
 	}
 }

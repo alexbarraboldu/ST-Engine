@@ -33,10 +33,6 @@ public:
 	void drawRectangle(SDL_Rect rect, SDL_Color color, bool outline = false);
 	void drawCircle();
 
-	//	Not Useful stuff
-	void drawFillTrinagleWithPoints(int x, int y, int w, int h, SDL_Color color);
-	void drawFillRectWithPoints(int x, int y, int w, int h, SDL_Color color);
-	void drawFillCircleWithPoints(int x, int y, int d, SDL_Color color);
 	//------------------
 
 	void drawSprite(const char* name, SDL_Rect rect);
