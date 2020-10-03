@@ -24,8 +24,8 @@ public:
 	bool getQuiteEngineLoop(unsigned short flags);
 	bool getVSync(unsigned short flags);
 	int getFrameRate(unsigned short flags);
-	int getWindowWidth(unsigned short flags);
-	int getWindowHeight(unsigned short flags);
+	Uint16 getWindowWidth(unsigned short flags);
+	Uint16 getWindowHeight(unsigned short flags);
 
 private:
 
@@ -34,7 +34,9 @@ private:
 	//	GLOBAL VARIABLES
 	//	Integers
 	int frameRate;
-	int windowWidth, windowHeight;
+	Uint16 windowWidth, windowHeight;
+	Uint16 pos_vertical_left, pos_vertical_center, pos_vertical_right;
+	Uint16 pos_horizontal_top, pos_horizontal_center, pos_horizontal_bottom;
 
 	//	Booleans
 	bool quiteEngineLoop;
@@ -71,7 +73,7 @@ catch (int t)
 	return t;
 }
 
-inline int GlobalVariables::getWindowWidth(unsigned short flags) try
+inline Uint16 GlobalVariables::getWindowWidth(unsigned short flags) try
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{
@@ -84,7 +86,7 @@ catch (int t)
 	return t;
 }
 
-inline int GlobalVariables::getWindowHeight(unsigned short flags) try
+inline Uint16 GlobalVariables::getWindowHeight(unsigned short flags) try
 {
 	if (flags & GlobalVar::WIDTH_HEIGHT)
 	{

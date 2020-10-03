@@ -10,8 +10,16 @@ GlobalVariables::GlobalVariables()
 	if (instance != NULL) return;
 
 	frameRate = FPS_UNLIMITED;
-	windowWidth = W_WIDTH_600;
-	windowHeight = W_HEIGHT_600;
+	windowWidth = W_WIDTH_720;
+	windowHeight = W_HEIGHT_720;
+
+	pos_horizontal_top = 0;
+	pos_horizontal_center = windowWidth / 2;
+	pos_horizontal_bottom = windowWidth;
+
+	pos_vertical_left = 0;
+	pos_vertical_center = windowHeight / 2;
+	pos_vertical_right = windowHeight;
 
 	quiteEngineLoop = true;
 	VSync = false;
