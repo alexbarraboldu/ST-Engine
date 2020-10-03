@@ -2,7 +2,7 @@
 #define SCENE_DIRECTOR_H
 
 #include <stack>
-#include <vector>
+//#include <vector>
 
 #include "SceneMenu.h"
 #include "SceneGame.h"
