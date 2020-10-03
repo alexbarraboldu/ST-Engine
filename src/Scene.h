@@ -2,6 +2,7 @@
 #define SCENE_H
 
 #include "Id.h"
+#include "System.h"
 
 class Scene : public Id
 {
@@ -33,6 +34,9 @@ protected:
 	virtual void renderEnd();
 
 	virtual void renderGUI();
+
+private:
+	System* system;
 };
 
 #endif // !SCENE_H
