@@ -31,7 +31,8 @@ public:
 
 	//	MOUSE MEMBERS
 	//	ON MOTION
-	Sint32 ActualMouseX, ActualMouseY;
+	Uint16 ActualMouseX, ActualMouseY;
+	bool mouseMoving;
 	//	ON CLICK
 	unsigned short mouseX, mouseY;
 	unsigned short RelMouseX, RelMouseY;
@@ -146,6 +147,8 @@ inline void Input::mouseReleasedEvent(SDL_MouseButtonEvent button)
 
 inline void Input::mouseMotionEvent(SDL_MouseMotionEvent motion)
 {
+	mouseMoving = true;
+
 	ActualMouseX = motion.x;
 	ActualMouseY = motion.y;
 }

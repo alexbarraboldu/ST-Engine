@@ -10,10 +10,11 @@ Input::Input() : Id()
 
 	//	ON MOTION
 	ActualMouseX = 0, ActualMouseY = 0;
+	mouseMoving = false;
 	//	ON CLICK
 	mouseX = 0, mouseY = 0;
 	RelMouseX = 0, RelMouseY = 0;
-	state_button = ButtonState::NONE;
+	state_button = ButtonState::RELEASED;
 	type_button = ButtonType::NONE;
 	single_click = false, double_click = false;
 	//	MOUSEWHEEL
@@ -57,7 +58,12 @@ void Input::updateEvents()
 		key_released[i] = false;
 	}
 	
-	if (state_button == ButtonState::RELEASED) mouseX = 0, mouseY = 0;
+	if (state_button == ButtonState::RELEASED)
+	{
+		mouseX = 0, mouseY = 0;
+		single_click = false, double_click = false;
+		mouseMoving = false;
+	}
 	//RelMouseX = 0, RelMouseY = 0;
 	//state_button = ButtonState::NONE;
 	//type_button = ButtonType::NONE;
@@ -94,10 +100,10 @@ void Input::updateEvents()
 		}
 	}
 
-
+	//	IMPLICIT INPUT
 	if (isKeyPressed(SDL_SCANCODE_ESCAPE))	//	CERRAR PROGRAMA
 	{
-		sGlobalVariables->setQuiteEngineLoop(false, id);
+		closeWindow();
 	}
 
 	if (isKeyPressed(SDL_SCANCODE_F11))	//	HACER VENTANA FULLSCREEN CON F11
@@ -112,6 +118,10 @@ void Input::updateEvents()
 		}
 	}
 
+	if (isKeyPressed(SDL_SCANCODE_L))	//	LIMPIAR CONSOLA
+	{
+		system("cls");
+	}
 }
 
 void Input::clearInput()
@@ -129,29 +139,3 @@ void Input::closeWindow()
 	sGlobalVariables->setQuiteEngineLoop(false, id);
 }
 
-/*
-//	PRIVATE
-*/
-
-//void Input::keyPressedEvent(SDL_Scancode key)
-//{
-//	if (key != SDL_NUM_SCANCODES)
-//	{
-//		if (!key_down[key])
-//		{
-//			key_pressed[key] = true;
-//		}
-//		key_down[key] = true;
-//		key_released[key] = false;
-//	}
-//}
-
-//void Input::keyReleasedEvent(SDL_Scancode key)
-//{
-//	if (key != SDL_NUM_SCANCODES)
-//	{
-//		key_pressed[key] = false;
-//		key_down[key] = false;
-//		key_released[key] = true;
-//	}
-//}
