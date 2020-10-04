@@ -14,10 +14,16 @@ public:
 	void render();
 
 private:
+	void clickToButton();
+	void drawBasicButton();
+
+
+	bool isActualMouseInButton();
 	bool isMouseInButton();
 
 	SDL_Rect rect;
 	bool buttonPressed;
+	bool buttonUsed;
 };
 
 #endif // !BUTTON_H
