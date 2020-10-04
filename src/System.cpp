@@ -12,7 +12,7 @@ System::~System()
 
 void System::init()
 {
-	ButtonVector = new Button[1];
+	ButtonVector = new DropdownButton[1];
 }
 
 void System::render()

@@ -1,5 +1,5 @@
 #include "Button.h"
-#include "Singletons.h"
+#include "../Singletons.h"
 
 Button::Button()
 {

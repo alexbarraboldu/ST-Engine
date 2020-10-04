@@ -10,10 +10,10 @@ public:
 	Button(SDL_Rect _rect);
 	~Button();
 
-	void update();
-	void render();
+	virtual void update();
+	virtual void render();
 
-private:
+protected:
 	void clickToButton();
 	void drawBasicButton();
 
