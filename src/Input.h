@@ -40,6 +40,7 @@ public:
 	ButtonType type_button;
 	bool single_click;
 	bool double_click;
+	bool many_click;
 	//	MOUSEWHEEL
 
 private:
@@ -125,6 +126,10 @@ inline void Input::mousePressedEvent(SDL_MouseButtonEvent button)
 	{
 		single_click = true;
 		printf(" | SingleClick");
+	}
+	else if (button.clicks >= 3)
+	{
+		many_click = true;
 	}
 	
 	mouseX = button.x;

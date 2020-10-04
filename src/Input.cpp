@@ -61,7 +61,7 @@ void Input::updateEvents()
 	if (state_button == ButtonState::RELEASED)
 	{
 		mouseX = 0, mouseY = 0;
-		single_click = false, double_click = false;
+		single_click = false, double_click = false, many_click = false;
 		mouseMoving = false;
 	}
 	//RelMouseX = 0, RelMouseY = 0;
