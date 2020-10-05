@@ -12,23 +12,27 @@ System::~System()
 
 void System::init()
 {
-	ButtonVector = new DropdownButton[1];
+	ButtonVector.resize(3);
+	ButtonVector[0] = new Button(SDL_Rect{ 40, 200, 200, 20});
+	ButtonVector[1] = new Button(SDL_Rect{400, 400, 100, 70});
+	ButtonVector[2] = new DropdownButton(30, 30, SDL_Color{0, 255, 0, 255});
+
 }
 
 void System::render()
 {
-	Uint8 ButtonVectorSize = sizeof(*ButtonVector)/sizeof(Button);
+	size_t ButtonVectorSize = ButtonVector.size();
 	for (size_t i = 0; i < ButtonVectorSize; i++)
 	{
-		ButtonVector[i].render();
+		ButtonVector[i]->render();
 	}
 }
 
 void System::update()
 {
-	Uint8 ButtonVectorSize = sizeof(*ButtonVector)/sizeof(Button);
+	size_t ButtonVectorSize = ButtonVector.size();
 	for (size_t i = 0; i < ButtonVectorSize; i++)
 	{
-		ButtonVector[i].update();
+		ButtonVector[i]->update();
 	}
 }

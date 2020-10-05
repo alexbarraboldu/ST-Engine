@@ -1,7 +1,7 @@
 #ifndef SYSTEM_H
 #define	SYSTEM_H
 
-#//include <vector>
+#include <vector>
 
 #include "buttons/DropdownButton.h"
 
@@ -17,7 +17,7 @@ public:
 	virtual void render();
 
 private:
-	Button* ButtonVector;
+	std::vector<Button*> ButtonVector;
 
 };
 
