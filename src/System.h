@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "buttons/DropdownButton.h"
+#include "Text.h"
 
 class System
 {
@@ -18,6 +19,7 @@ public:
 
 private:
 	std::vector<Button*> ButtonVector;
+	Text* testText;
 
 };
 

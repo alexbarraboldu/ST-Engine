@@ -17,6 +17,9 @@ void System::init()
 	ButtonVector[1] = new Button(SDL_Rect{400, 400, 100, 70});
 	ButtonVector[2] = new DropdownButton(30, 30, SDL_Color{0, 255, 0, 255});
 
+	testText = new Text();
+	testText->LoadFont("OpenSans-Regular.ttf", 40);
+	testText->LoadText("LMAO THIS SHIT WORKS");
 }
 
 void System::render()
@@ -26,6 +29,8 @@ void System::render()
 	{
 		ButtonVector[i]->render();
 	}
+
+	testText->RenderFont();
 }
 
 void System::update()
