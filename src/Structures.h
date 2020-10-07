@@ -32,12 +32,12 @@ typedef enum class ButtonState {
 
 	PRESSED, RELEASED, NONE
 
-};
+} ButtonState;
 
 typedef enum class ButtonType {
 
 	LEFT_BUTTON, MIDDLE_BUTTON, RIGHT_BUTTON, X1_BUTTON, X2_BUTTON, NONE
 
-};
+} ButtonType;
 
 #endif // !STRUCUTRES_H

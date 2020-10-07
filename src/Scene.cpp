@@ -64,6 +64,7 @@ void Scene::preLoad()
 void Scene::init()
 {
 	system->init();
+	
 }
 
 
@@ -101,11 +102,14 @@ void Scene::render()
 	sRenderer->drawLine(0, 0, 300, 300 , SDL_Color{ 255,255,255,255 });
 
 	sRenderer->drawPoint(20, 40, SDL_Color{ 255,255,255,255 });
+
+	sRenderer->drawSprite("cpp.png", SDL_Rect{600,200,200,200});
 }
 
 void Scene::renderEnd()
 {
 	system->render();
+
 }
 
 void Scene::renderGUI()
