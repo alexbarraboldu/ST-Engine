@@ -8,7 +8,7 @@ Engine::Engine() : Id()
 
 	id = GlobalVar::FRAME_RATE | GlobalVar::QUITE_ENGINE_LOOP;
 
-	//deltaTime = 1000.0f / sGlobalVariables->getFrameRate(id);
+	deltaTime = 1000.0f / sGlobalVariables->getFrameRate(id);
 
 	//totalFrames = 0;
 
@@ -65,12 +65,13 @@ void Engine::engineLoop()
 			FPS = frame_count_per_second;
 			frame_count_per_second = 0;
 			prev_time_in_seconds = time_in_seconds;
+			deltaTime = 1000.0f / FPS;
 
 			T++;
 
 			title = "FPS: " + std::to_string(FPS);
-			title += " | DeltaTime (s): " + std::to_string(1.0f / FPS);
-			title += " | DeltaTime (ms): " + std::to_string(1000.0f / FPS);
+			title += " | DeltaTime (s): " + std::to_string(deltaTime / 1000.0f);
+			title += " | DeltaTime (ms): " + std::to_string(deltaTime);
 			title += " | Time (s): " + std::to_string(T);
 			title += " | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime);
 
