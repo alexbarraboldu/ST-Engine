@@ -37,7 +37,7 @@ public:
 
 	void drawSprite(const char* name, SDL_Rect rect);
 
-	void drawText();
+	void drawText(SDL_Texture* text, SDL_Rect rect);
 
 	void drawSelection(SDL_Rect rect);
 

@@ -118,9 +118,9 @@ void Renderer::drawSprite(const char* name , SDL_Rect rect)
 	SDL_RenderCopy(mRenderer, sResourceManager->getSpriteByID(sResourceManager->getSpriteID(name))->texture,NULL, &rect);
 }
 
-void Renderer::drawText()
+void Renderer::drawText(SDL_Texture* text, SDL_Rect rect)
 {
-
+	SDL_RenderCopy(mRenderer, text, NULL, &rect);
 }
 
 void Renderer::drawSelection(SDL_Rect rect)
