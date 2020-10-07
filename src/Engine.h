@@ -20,9 +20,9 @@ public:
 	void doStuff(bool a = false);
 
 private:
-	clock_t deltaTime;
+	double deltaTime;
 
-	unsigned int totalFrames;
+	//unsigned int totalFrames;
 	unsigned int FPS;
 	unsigned int timesUnderDeltaTime;
 
