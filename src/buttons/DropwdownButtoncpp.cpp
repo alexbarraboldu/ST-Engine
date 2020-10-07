@@ -7,6 +7,8 @@ DropdownButton::DropdownButton() : Button()
 	DP_Color = B_Color;
 	DP_Pressed = false;
 	DP_Used = false;
+
+	isBoxOpen = false;
 }
 
 DropdownButton::DropdownButton(Uint16 W, Uint16 H) : Button()
@@ -15,6 +17,8 @@ DropdownButton::DropdownButton(Uint16 W, Uint16 H) : Button()
 	DP_Color = B_Color;
 	DP_Pressed = false;
 	DP_Used = false;
+
+	isBoxOpen = false;
 }
 
 DropdownButton::DropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : Button()
