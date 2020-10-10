@@ -3,7 +3,8 @@
 
 #include <vector>
 
-#include "buttons/DropdownButton.h"
+#include "buttons/Button.h"
+#include "buttons/BasicDropdownButton.h"
 #include "Text.h"
 
 class System
@@ -18,7 +19,7 @@ public:
 	virtual void render();
 
 private:
-	std::vector<Button*> ButtonVector;
+	std::vector<BasicButton*> ButtonVector;
 	Text* testText;
 
 };

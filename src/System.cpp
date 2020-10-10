@@ -12,14 +12,15 @@ System::~System()
 
 void System::init()
 {
-	ButtonVector.resize(3);
-	ButtonVector[0] = new Button(SDL_Rect{ 40, 200, 200, 20});
-	ButtonVector[1] = new Button(SDL_Rect{400, 400, 100, 70});
-	ButtonVector[2] = new DropdownButton(30, 30, SDL_Color{0, 255, 0, 255});
+	ButtonVector.resize(4);
+	ButtonVector[0] = new BasicButton(SDL_Rect{ 40, 200, 200, 20});
+	ButtonVector[1] = new BasicButton(SDL_Rect{400, 400, 100, 70});
+	ButtonVector[2] = new BasicDropdownButton(30, 30, SDL_Color{0, 255, 0, 255});
+	ButtonVector[3] = new Button(SDL_Rect{600, 600, 200, 50}, "Botón Funcional", new Padding{ 10,10,10,10 });
 
 	testText = new Text();
 	testText->LoadFont("OpenSans-Regular.ttf", 30);
-	testText->LoadText("LMAO THIS SHIT WORKS");
+	testText->LoadTextContent("LMAO THIS SHIT WORKS");
 }
 
 void System::render()
