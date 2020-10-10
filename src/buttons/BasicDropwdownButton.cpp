@@ -1,7 +1,7 @@
-#include "DropdownButton.h"
+#include "BasicDropdownButton.h"
 #include "../Singletons.h"
 
-DropdownButton::DropdownButton() : Button()
+BasicDropdownButton::BasicDropdownButton() : BasicButton()
 {
 	DP_Rect = { B_Rect.x + B_Rect.w - 25, B_Rect.y + B_Rect.h - 25, 25, 25};
 	DP_Color = B_Color;
@@ -11,7 +11,7 @@ DropdownButton::DropdownButton() : Button()
 	isBoxOpen = false;
 }
 
-DropdownButton::DropdownButton(Uint16 W, Uint16 H) : Button()
+BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H) : BasicButton()
 {
 	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
 	DP_Color = B_Color;
@@ -21,7 +21,7 @@ DropdownButton::DropdownButton(Uint16 W, Uint16 H) : Button()
 	isBoxOpen = false;
 }
 
-DropdownButton::DropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : Button()
+BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : BasicButton()
 {
 	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
 	DP_Color = _color;
@@ -31,24 +31,24 @@ DropdownButton::DropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : Button()
 	isBoxOpen = false;
 }
 
-DropdownButton::~DropdownButton()
+BasicDropdownButton::~BasicDropdownButton()
 {
 }
 
-void DropdownButton::update()
+void BasicDropdownButton::update()
 {
 	clickToButton(DP_Rect, DP_Pressed, DP_Used);
 	openBoxUpdate();
 }
 
-void DropdownButton::render()
+void BasicDropdownButton::render()
 {
-	basicButtonDraw(B_Rect);
+	basicButtonDraw(B_Rect);	// Button::render() -> No hacemos esto, menos calls de esta manera
 	basicButtonDraw(DP_Rect, DP_Color, DP_Pressed, false);
 	openBoxDraw();
 }
 
-void DropdownButton::openBoxUpdate()
+void BasicDropdownButton::openBoxUpdate()
 {
 	if (DP_Used && !isBoxOpen)
 	{
@@ -60,7 +60,7 @@ void DropdownButton::openBoxUpdate()
 	}
 }
 
-void DropdownButton::openBoxDraw()
+void BasicDropdownButton::openBoxDraw()
 {
 	if (isBoxOpen)
 	{

@@ -1,18 +1,18 @@
 #ifndef DROP_DOWN_BUTTON_H
 #define DROP_DOWN_BUTTON_H
 
-#include "Button.h"
+#include "BasicButton.h"
 
-class DropdownButton : public Button
+class BasicDropdownButton : public BasicButton
 {
 public:
-	DropdownButton();
-	DropdownButton(Uint16 W, Uint16 H);
-	DropdownButton(Uint16 W, Uint16 H, SDL_Color _color);
-	~DropdownButton();
+	BasicDropdownButton();
+	BasicDropdownButton(Uint16 W, Uint16 H);
+	BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color);
+	~BasicDropdownButton();
 
 	virtual void update();
-	virtual void render();
+	void render();
 
 private:
 	void openBoxUpdate();

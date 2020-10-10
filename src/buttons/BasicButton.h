@@ -3,13 +3,13 @@
 
 #include <SDL.h>
 
-class Button
+class BasicButton
 {
 public:
-	Button();
-	Button(SDL_Rect _rect);
-	Button(SDL_Rect _rect, SDL_Color _color);
-	~Button();
+	BasicButton();
+	BasicButton(SDL_Rect _rect);
+	BasicButton(SDL_Rect _rect, SDL_Color _color);
+	~BasicButton();
 
 	virtual void update();
 	virtual void render();

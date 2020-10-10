@@ -1,7 +1,7 @@
-#include "Button.h"
+#include "BasicButton.h"
 #include "../Singletons.h"
 
-Button::Button()
+BasicButton::BasicButton()
 {
 	B_Rect = { 0, 0, 200, 50 };
 	B_Color = { 225, 105, 105, 255 };
@@ -10,7 +10,7 @@ Button::Button()
 	B_DrawFill = false;
 }
 
-Button::Button(SDL_Rect _rect)
+BasicButton::BasicButton(SDL_Rect _rect)
 {
 	B_Rect = _rect;
 	B_Color = { 255, 105, 105, 255};
@@ -19,7 +19,7 @@ Button::Button(SDL_Rect _rect)
 	B_DrawFill = false;
 }
 
-Button::Button(SDL_Rect _rect, SDL_Color _B_Color)
+BasicButton::BasicButton(SDL_Rect _rect, SDL_Color _B_Color)
 {
 	B_Rect = _rect;
 	B_Color = _B_Color;
@@ -29,19 +29,19 @@ Button::Button(SDL_Rect _rect, SDL_Color _B_Color)
 }
 
 
-Button::~Button() {}
+BasicButton::~BasicButton() {}
 
-void Button::update()
+void BasicButton::update()
 {
 	clickToButton(B_Rect, B_Pressed, B_Used);
 }
 
-void Button::render()
+void BasicButton::render()
 {
 	basicButtonDraw(B_Rect, B_Pressed);
 }
 
-void Button::clickToButton(SDL_Rect _rect, bool &_pressed, bool &_used)
+void BasicButton::clickToButton(SDL_Rect _rect, bool &_pressed, bool &_used)
 {
 	if ((sInput->single_click || sInput->double_click || sInput->many_click) && sInput->state_button == ButtonState::PRESSED && sInput->type_button == ButtonType::LEFT_BUTTON && isMouseInButton(_rect))
 	{
@@ -57,7 +57,7 @@ void Button::clickToButton(SDL_Rect _rect, bool &_pressed, bool &_used)
 	else if (_used/* && _pressed*/) { /*_pressed = false;*/ _used = false; }
 }
 
-void Button::basicButtonDraw(SDL_Rect _rect, bool _pressed, bool _drawFill)
+void BasicButton::basicButtonDraw(SDL_Rect _rect, bool _pressed, bool _drawFill)
 {
 	SDL_SetRenderDrawColor(sRenderer->getRenderer(), B_Color.r, B_Color.g, B_Color.b, B_Color.a);
 	SDL_RenderDrawRect(sRenderer->getRenderer(), &_rect);
@@ -76,7 +76,7 @@ void Button::basicButtonDraw(SDL_Rect _rect, bool _pressed, bool _drawFill)
 	}
 }
 
-void Button::basicButtonDraw(SDL_Rect _rect, SDL_Color _color, bool _pressed, bool _drawFill)
+void BasicButton::basicButtonDraw(SDL_Rect _rect, SDL_Color _color, bool _pressed, bool _drawFill)
 {
 	SDL_SetRenderDrawColor(sRenderer->getRenderer(), _color.r, _color.g, _color.b, _color.a);
 	SDL_RenderDrawRect(sRenderer->getRenderer(), &_rect);
@@ -95,7 +95,7 @@ void Button::basicButtonDraw(SDL_Rect _rect, SDL_Color _color, bool _pressed, bo
 	}
 }
 
-bool Button::isActualMouseInButton(SDL_Rect _rect)
+bool BasicButton::isActualMouseInButton(SDL_Rect _rect)
 {
 	if ((sInput->ActualMouseX > _rect.x && sInput->ActualMouseX < _rect.x + _rect.w) && (sInput->ActualMouseY > _rect.y && sInput->ActualMouseY < _rect.y + _rect.h))
 	{
@@ -104,7 +104,7 @@ bool Button::isActualMouseInButton(SDL_Rect _rect)
 	return false;
 }
 
-bool Button::isMouseInButton(SDL_Rect _rect)
+bool BasicButton::isMouseInButton(SDL_Rect _rect)
 {
 	if ((sInput->mouseX > _rect.x && sInput->mouseX < _rect.x + _rect.w) && (sInput->mouseY > _rect.y && sInput->mouseY < _rect.y + _rect.h))
 	{
