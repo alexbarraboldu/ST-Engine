@@ -43,28 +43,29 @@ void Text::AddaptFontSizeToWidth(Uint16 _buttonWidth, SDL_Rect _rect, Padding _p
 {
 	int aTexW = 0, aTexH = 0;
 
-	bool loopeble = true;
-	while (loopeble)
+	bool loopable = true;
+	while (loopable)
 	{
 		SDL_QueryTexture(texture, NULL, NULL, &aTexW, &aTexH);
 		
-		if (aTexW >= _buttonWidth)
+		if (aTexW <= _buttonWidth)
 		{
-			size--;
+			size++;
 			ReloadFont();
 			ReloadTextContent();
 		}
 		else
 		{
-			loopeble = false;
 			texW = aTexW;
 			texH = aTexH;
 			
 			rect = _rect;
-			rect.x += (rect.w - (rect.w / 2)) - texW / 2;
-			rect.y += (rect.h - (rect.h / 2) - texH / 2);
+			rect.x += _rect.w / 2 - texW / 2;
+			rect.y += _rect.h / 2 - texH / 2 - texH / 30;
 			rect.w = texW;
 			rect.h = texH;
+		
+			loopable = false;
 		}
 	}
 }
