@@ -1,5 +1,5 @@
-#ifndef DROP_DOWN_BUTTON_H
-#define DROP_DOWN_BUTTON_H
+#ifndef BASIC_DROP_DOWN_BUTTON_H
+#define BASIC_DROP_DOWN_BUTTON_H
 
 #include "BasicButton.h"
 
@@ -12,7 +12,7 @@ public:
 	~BasicDropdownButton();
 
 	virtual void update();
-	void render();
+	virtual void render();
 
 private:
 	void openBoxUpdate();
@@ -26,4 +26,4 @@ private:
 	bool isBoxOpen;
 };
 
-#endif // !DROP_DOWN_BUTTON_H
+#endif // !BASIC_DROP_DOWN_BUTTON_H

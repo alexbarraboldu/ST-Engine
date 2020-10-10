@@ -1,5 +1,5 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef BASIC_BUTTON_H
+#define BASIC_BUTTON_H
 
 #include <SDL.h>
 
@@ -30,4 +30,4 @@ protected:
 	bool B_DrawFill;
 };
 
-#endif // !BUTTON_H
+#endif // !BASIC_BUTTON_H

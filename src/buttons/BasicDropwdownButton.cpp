@@ -31,9 +31,7 @@ BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color) :
 	isBoxOpen = false;
 }
 
-BasicDropdownButton::~BasicDropdownButton()
-{
-}
+BasicDropdownButton::~BasicDropdownButton() {}
 
 void BasicDropdownButton::update()
 {
