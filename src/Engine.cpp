@@ -39,16 +39,12 @@ void Engine::engineLoop()
 
 	while (sGlobalVariables->getQuiteEngineLoop(id) == true)
 	{
-	//	std::chrono::high_resolution_clock::time_point beginFrame = std::chrono::high_resolution_clock::now();
-
 		////----------------------------------------------
 		////
 
 		sInput->updateEvents();
 
 		sSceneDirector->mCurrentScene->onLoad();
-
-		//doStuff(true);
 
 		sSceneDirector->mCurrentScene->onUpdate(clockToNanoseconds(deltaTime));
 
@@ -69,11 +65,11 @@ void Engine::engineLoop()
 
 			T++;
 
-			title = "FPS: " + std::to_string(FPS);
-			title += " | DeltaTime (s): " + std::to_string(deltaTime / 1000.0f);
-			title += " | DeltaTime (ms): " + std::to_string(deltaTime);
-			title += " | Time (s): " + std::to_string(T);
-			title += " | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime);
+			title = "FPS: " + std::to_string(FPS) +
+					" | DeltaTime (s): " + std::to_string(deltaTime / 1000.0f) +
+					" | DeltaTime (ms): " + std::to_string(deltaTime) +
+					" | Time (s): " + std::to_string(T) +
+					" | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime);
 
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
