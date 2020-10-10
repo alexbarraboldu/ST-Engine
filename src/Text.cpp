@@ -12,8 +12,9 @@ Text::~Text()
 	font = NULL;
 }
 
-void Text::LoadFont(const char* font_name, Uint8 size)
+void Text::LoadFont(const char* font_name, Uint8 _size)
 {
+	size = _size;
 	font = TTF_OpenFont(font_name, size);
 
 	if (!font)
@@ -25,12 +26,18 @@ void Text::LoadFont(const char* font_name, Uint8 size)
 void Text::LoadText(const char* text_content)
 {
 	SDL_Color auxColor = { 255,255,255,255 };
-	SDL_Surface* auxSurface = TTF_RenderUTF8_Solid(font, text_content, auxColor);
+	SDL_Surface* auxSurface = TTF_RenderText_Solid(font, text_content, auxColor);
 	text = SDL_CreateTextureFromSurface(sRenderer->getRenderer(), auxSurface);
-}
 
+	SDL_QueryTexture(text, NULL, NULL, &texW, &texH);
+}
 
 void Text::RenderFont()
 {
-	sRenderer->drawText(text, SDL_Rect{200,200,400,60});
+	sRenderer->drawText(text, SDL_Rect{ 400, 0, texW, texH});
+}
+
+void Text::RenderFont(SDL_Rect rect)
+{
+	sRenderer->drawText(text, rect);
 }
