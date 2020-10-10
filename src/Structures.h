@@ -40,4 +40,17 @@ typedef enum class ButtonType {
 
 } ButtonType;
 
+struct Padding {
+	
+	Padding(Uint16 _top, Uint16 _right, Uint16 _bottom, Uint16 _left)
+	{
+		top = _top;
+		right = _right;
+		bottom = _bottom;
+		left = _left;
+	}
+
+	Uint16 top, right, bottom, left;
+};
+
 #endif // !STRUCUTRES_H
