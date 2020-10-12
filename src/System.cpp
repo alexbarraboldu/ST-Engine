@@ -18,8 +18,9 @@ void System::init()
 	ButtonVector.push_back(new Button(SDL_Rect{ 500, 400, 300, 80 }, "Botón Funcional", new Padding(0, 25, 0, 25)));
 	ButtonVector.push_back(new DropdownButton(SDL_Rect{ 800, 400, 300, 20 }, "Botón Disfuncional", new Padding(10, 25, 10, 25)));
 
-	Button* lel = (Button*)ButtonVector[3];
-	lel->centerText();
+	//	WITH THIS WE JUST CAST TO <BUTTON> AND THEN CALL THE FUNCTION CenterText()
+	BasicButtontToButton(ButtonVector[2])->centerText();
+	BasicButtontToButton(ButtonVector[3])->centerText();
 
 	//testText = new Text();
 	//testText->LoadFont("OpenSans-Regular.ttf", 30);

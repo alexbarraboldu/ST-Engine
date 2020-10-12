@@ -6,8 +6,9 @@
 #include "buttons/Button.h"
 #include "buttons/DropdownButton.h"
 #include "Text.h"
+#include "Interfaces/ButtonConverterInterface.h"
 
-class System
+class System : public ButtonConverterInterface
 {
 public:
 	System();
