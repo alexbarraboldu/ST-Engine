@@ -17,10 +17,10 @@ public:
 
 	void centerText(bool isCentered = true);
 
-	void update();
-	void render();
+	virtual void update();
+	virtual void render();
 
-private:
+protected:
 	Text* text;
 	Padding* padding;
 };

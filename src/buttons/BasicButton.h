@@ -19,7 +19,6 @@ protected:
 	void basicButtonDraw(SDL_Rect _rect, bool _pressed = false, bool _drawFill = true);
 	void basicButtonDraw(SDL_Rect _rect, SDL_Color _color ,bool _pressed = false, bool _drawFill = true);
 
-
 	bool isActualMouseInButton(SDL_Rect buttonRect);
 	bool isMouseInButton(SDL_Rect buttonRect);
 
