@@ -15,7 +15,11 @@ void System::init()
 	//ButtonVector.resize(3);
 	ButtonVector.push_back(new BasicButton(SDL_Rect{ 40, 200, 200, 20 }));
 	ButtonVector.push_back(new BasicDropdownButton(30, 30, SDL_Color{ 0, 255, 0, 255 }));
-	ButtonVector.push_back(new Button(SDL_Rect{ 600, 400, 300, 80 }, "Botón Funcional", new Padding(0, 25, 0, 25)));
+	ButtonVector.push_back(new Button(SDL_Rect{ 500, 400, 300, 80 }, "Botón Funcional", new Padding(0, 25, 0, 25)));
+	ButtonVector.push_back(new DropdownButton(SDL_Rect{ 800, 400, 300, 20 }, "Botón Disfuncional", new Padding(10, 25, 10, 25)));
+
+	Button* lel = (Button*)ButtonVector[3];
+	lel->centerText();
 
 	//testText = new Text();
 	//testText->LoadFont("OpenSans-Regular.ttf", 30);
