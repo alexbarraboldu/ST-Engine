@@ -15,12 +15,12 @@ public:
 	void LoadFont(const char* font_name, Uint8 size);
 	void LoadTextContent(const char* text_content);
 
-	void AddaptFontSizeToWidth(Uint16 _buttonWidth, SDL_Rect _rect, Padding _padding);
-
+	void AddaptFontSizeToButton(SDL_Rect ButtonRect, Padding* _padding, bool _center = true);
 	void RenderFont();
 	void RenderFont(SDL_Rect rect);
 
-	const char* textContent;
+	std::string textContent;
+
 private:
 	void ReloadFont();
 	void ReloadTextContent();
