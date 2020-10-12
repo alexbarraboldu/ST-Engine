@@ -1,10 +1,10 @@
 #ifndef BASIC_DROP_DOWN_BUTTON_H
 #define BASIC_DROP_DOWN_BUTTON_H
 
-#include "BasicButton.h"
-#include "DpButtonInterface.h"
+#include "Button.h"
+#include "../Interfaces/DpButtonInterface.h"
 
-class BasicDropdownButton : public BasicButton, public DpButtonInterface
+class BasicDropdownButton : public Button, public DpButtonInterface
 {
 public:
 	BasicDropdownButton();

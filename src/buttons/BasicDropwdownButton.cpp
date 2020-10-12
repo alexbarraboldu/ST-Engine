@@ -1,7 +1,7 @@
 #include "BasicDropdownButton.h"
 #include "../Singletons.h"
 
-BasicDropdownButton::BasicDropdownButton() : BasicButton()
+BasicDropdownButton::BasicDropdownButton() : Button()
 {
 	DP_Rect = { B_Rect.x + B_Rect.w - 25, B_Rect.y + B_Rect.h - 25, 25, 25};
 	DP_Color = B_Color;
@@ -11,7 +11,7 @@ BasicDropdownButton::BasicDropdownButton() : BasicButton()
 	isBoxOpen = false;
 }
 
-BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H) : BasicButton()
+BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H) : Button()
 {
 	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
 	DP_Color = B_Color;
@@ -21,7 +21,7 @@ BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H) : BasicButton()
 	isBoxOpen = false;
 }
 
-BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : BasicButton()
+BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : Button()
 {
 //	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
 	DP_Rect = calcDropdownButton(B_Rect, W, H);
