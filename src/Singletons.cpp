@@ -7,7 +7,7 @@ ResourceManager* sResourceManager = NULL;
 SceneDirector* sSceneDirector = NULL;
 //SoundManager* sSoundManager = NULL;
 
-void initializeSingletons() {
+const void initializeSingletons() {
 	sGlobalVariables = GlobalVariables::getInstance();
 	sInput = Input::getInstance();
 	sRenderer = Renderer::getInstance();
@@ -18,7 +18,7 @@ void initializeSingletons() {
 	sInput->setWindow(sRenderer->getWindow());
 }
 
-void deleteSingletons() {
+const void deleteSingletons() {
 	delete sGlobalVariables->getInstance();
 	sGlobalVariables = NULL;
 
@@ -38,3 +38,4 @@ void deleteSingletons() {
 	//sSoundManager = NULL;
 
 }
+

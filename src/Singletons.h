@@ -8,8 +8,8 @@
 #include "SceneDirector.h"
 //#include "SoundManager.h"
 
-void initializeSingletons();
-void deleteSingletons();
+const void initializeSingletons();
+const void deleteSingletons();
 
 extern GlobalVariables* sGlobalVariables;
 extern Input* sInput;
