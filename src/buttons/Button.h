@@ -15,6 +15,8 @@ public:
 	Button(SDL_Rect _rect, std::string _text, Padding* _padding);
 	~Button();
 
+	void centerText(bool isCentered = true);
+
 	void update();
 	void render();
 
