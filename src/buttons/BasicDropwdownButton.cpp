@@ -23,7 +23,8 @@ BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H) : BasicButton()
 
 BasicDropdownButton::BasicDropdownButton(Uint16 W, Uint16 H, SDL_Color _color) : BasicButton()
 {
-	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
+//	DP_Rect = { B_Rect.x + B_Rect.w - W, B_Rect.y + B_Rect.h - H, W, H };
+	DP_Rect = calcDropdownButton(B_Rect, W, H);
 	DP_Color = _color;
 	DP_Pressed = false;
 	DP_Used = false;
@@ -41,7 +42,7 @@ void BasicDropdownButton::update()
 
 void BasicDropdownButton::render()
 {
-	basicButtonDraw(B_Rect);	// Button::render() -> No hacemos esto, menos calls de esta manera
+	BasicButton::render();
 	basicButtonDraw(DP_Rect, DP_Color, DP_Pressed, false);
 	openBoxDraw();
 }

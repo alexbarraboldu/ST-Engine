@@ -2,8 +2,9 @@
 #define BASIC_DROP_DOWN_BUTTON_H
 
 #include "BasicButton.h"
+#include "DpButtonInterface.h"
 
-class BasicDropdownButton : public BasicButton
+class BasicDropdownButton : public BasicButton, public DpButtonInterface
 {
 public:
 	BasicDropdownButton();
@@ -14,7 +15,7 @@ public:
 	virtual void update();
 	virtual void render();
 
-private:
+protected:
 	void openBoxUpdate();
 	void openBoxDraw();
 
