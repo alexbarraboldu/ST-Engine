@@ -13,14 +13,14 @@ public:
 	DropdownButton(SDL_Rect _rect, std::string _text, Padding* _padding);
 	~DropdownButton();
 
-	void centerText(bool isCentered = true);
+//	void centerText(bool isCentered = true);
 
 	void update();
 	void render();
 
 private:
-	Text* text;
-	Padding* padding;
+	//Text* text;
+	//Padding* padding;
 };
 
 

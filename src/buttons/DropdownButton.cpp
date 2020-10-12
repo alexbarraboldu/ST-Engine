@@ -35,10 +35,10 @@ DropdownButton::DropdownButton(SDL_Rect _rect, std::string _text, Padding* _padd
 
 DropdownButton::~DropdownButton() {}
 
-void DropdownButton::centerText(bool isCentered)
-{
-	text->AddaptFontSizeToButton(B_Rect, padding, isCentered);
-}
+//void DropdownButton::centerText(bool isCentered)
+//{
+//	text->AddaptFontSizeToButton(B_Rect, padding, isCentered);
+//}
 
 void DropdownButton::update()
 {
