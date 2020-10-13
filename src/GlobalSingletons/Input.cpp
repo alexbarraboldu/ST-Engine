@@ -1,4 +1,4 @@
-#include "Singletons.h"
+#include "../Singletons.h"
 
 Input* Input::instance = NULL;
 

@@ -1,4 +1,4 @@
-#include "Singletons.h"
+#include "../Singletons.h"
 
 ResourceManager* ResourceManager::instance = NULL;
 

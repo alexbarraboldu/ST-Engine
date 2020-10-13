@@ -55,7 +55,7 @@ void Scene::preLoad()
 {
 	if (mPreloadScene) mPreloadScene = false;
 	
-	sResourceManager->loadImage("cpp.png");
+	sResourceManager->loadImage("Content/Images/cpp.png");
 }
 
 
@@ -103,7 +103,7 @@ void Scene::render()
 
 	sRenderer->drawPoint(20, 40, SDL_Color{ 255,255,255,255 });
 
-	sRenderer->drawSprite("cpp.png", SDL_Rect{600,200,200,200});
+	sRenderer->drawSprite("Content/Images/cpp.png", SDL_Rect{600,200,200,200});
 }
 
 void Scene::renderEnd()

@@ -25,7 +25,7 @@ Button::Button(SDL_Rect _rect, std::string _text, Padding* _padding)
 	B_Rect = _rect;
 
 	text = new Text();
-	text->LoadFont("OpenSans-Regular.ttf", 1);
+	text->LoadFont("Content/Fonts/OpenSans-Regular.ttf", 1);
 	text->LoadTextContent(_text.c_str());
 
 	padding = _padding;

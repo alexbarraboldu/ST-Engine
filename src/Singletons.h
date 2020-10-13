@@ -1,11 +1,11 @@
 #ifndef SINGLETONS_H
 #define SINGLETONS_H
 
-#include "GlobalVariables.h"
-#include "Input.h"
-#include "Renderer.h"
-#include "ResourceManager.h"
-#include "SceneDirector.h"
+#include "GlobalSingletons/GlobalVariables.h"
+#include "GlobalSingletons/Input.h"
+#include "GlobalSingletons/Renderer.h"
+#include "GlobalSingletons/ResourceManager.h"
+#include "GlobalSingletons/SceneDirector.h"
 //#include "SoundManager.h"
 
 const void initializeSingletons();

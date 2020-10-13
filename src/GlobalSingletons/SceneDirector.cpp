@@ -1,4 +1,4 @@
-#include "Singletons.h"
+#include "../Singletons.h"
 
 SceneDirector* SceneDirector::instance = NULL;
 

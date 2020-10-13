@@ -25,7 +25,7 @@ DropdownButton::DropdownButton(SDL_Rect _rect, std::string _text, Padding* _padd
 	DP_Rect = calcDropdownButton(_rect, 30, 20);
 
 	text = new Text();
-	text->LoadFont("OpenSans-Regular.ttf", 1);
+	text->LoadFont("Content/Fonts/OpenSans-Regular.ttf", 1);
 	text->LoadTextContent(_text.c_str());
 
 	padding = _padding;

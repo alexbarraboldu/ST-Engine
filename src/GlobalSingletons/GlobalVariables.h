@@ -1,7 +1,7 @@
 #ifndef GLOBAL_VARIABLES_H
 #define GLOBAL_VARIABLES_H
 
-#include "Structures.h"
+#include "../Structures.h"
 
 
 class GlobalVariables {

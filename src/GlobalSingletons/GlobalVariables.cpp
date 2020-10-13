@@ -1,7 +1,7 @@
 #include <SDL.h>
 
 #include "GlobalVariables.h"
-#include "Macros.h"
+#include "../Macros.h"
 
 GlobalVariables* GlobalVariables::instance = NULL;
 

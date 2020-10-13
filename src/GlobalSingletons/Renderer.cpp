@@ -1,5 +1,6 @@
-#include "Singletons.h"
 #include <SDL_image.h>
+
+#include "../Singletons.h"
 
 Renderer* Renderer::instance = NULL;
 
