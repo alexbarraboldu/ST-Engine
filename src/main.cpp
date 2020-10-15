@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 		return EXIT_FAILURE;
 	}
 
-	Engine* engine1 = new Engine();
+	Engine* engine1 = new Engine(argc, argv);
 
 	engine1->engineLoop();
 	engine1->destroy();
