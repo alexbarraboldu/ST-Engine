@@ -2,10 +2,9 @@
 #define SCENE_DIRECTOR_H
 
 #include <stack>
-//#include <vector>
 
-#include "SceneMenu.h"
-#include "SceneGame.h"
+#include "../SceneMenu.h"
+#include "../SceneGame.h"
 
 class SceneDirector : public Id {
 public:
