@@ -9,9 +9,13 @@
 class Engine : Id {
 public:
 	Engine();
+	Engine(int argc, char* arg[]);
 	~Engine();
 
 	void engineLoop();
+	void gameLoop(bool useIt = true);
+	void editorLoop(bool useIt = true);
+
 	void destroy();
 
 	double clockToSeconds(clock_t ticks);
@@ -20,6 +24,8 @@ public:
 	void doStuff(bool a = false);
 
 private:
+	std::string argvToString();
+
 	double deltaTime;
 
 	//unsigned int totalFrames;
@@ -27,6 +33,10 @@ private:
 	unsigned int timesUnderDeltaTime;
 
 	bool quitEngineLoop;
+
+	int argc;
+	char** argv;
+	std::string argString;
 };
 
 #endif // !ENGINE_H

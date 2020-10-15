@@ -18,6 +18,31 @@ Engine::Engine() : Id()
 
 	quitEngineLoop = true;
 
+	argc = 0;
+	argv = nullptr;
+	argString = "";
+}
+
+Engine::Engine(int _argc, char* _argv[]) : Id()
+{
+	initializeSingletons();
+
+	id = GlobalVar::FRAME_RATE | GlobalVar::QUITE_ENGINE_LOOP;
+
+	deltaTime = 1000.0f / sGlobalVariables->getFrameRate(id);
+
+	//totalFrames = 0;
+
+	FPS = 0;
+
+	timesUnderDeltaTime = 0;
+
+	quitEngineLoop = true;
+
+	argc = _argc;
+	argv = _argv;
+
+	argString = argvToString();
 }
 
 Engine::~Engine() {}
@@ -44,11 +69,16 @@ void Engine::engineLoop()
 
 		sInput->updateEvents();
 
-		sSceneDirector->mCurrentScene->onLoad();
 
-		sSceneDirector->mCurrentScene->onUpdate(clockToNanoseconds(deltaTime));
+		gameLoop(0);
 
-		sSceneDirector->mCurrentScene->onRender();
+		editorLoop(1);
+
+		//sSceneDirector->mCurrentScene->onLoad();
+
+		//sSceneDirector->mCurrentScene->onUpdate(clockToNanoseconds(deltaTime));
+
+		//sSceneDirector->mCurrentScene->onRender();
 
 		////
 		////----------------------------------------------
@@ -66,10 +96,11 @@ void Engine::engineLoop()
 			T++;
 
 			title = "FPS: " + std::to_string(FPS) +
-					" | DeltaTime (s): " + std::to_string(deltaTime / 1000.0f) +
-					" | DeltaTime (ms): " + std::to_string(deltaTime) +
-					" | Time (s): " + std::to_string(T) +
-					" | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime);
+				" | DeltaTime (s): " + std::to_string(deltaTime / 1000.0f) +
+				" | DeltaTime (ms): " + std::to_string(deltaTime) +
+				" | Time (s): " + std::to_string(T) +
+				" | Times Under DeltaTime: " + std::to_string(timesUnderDeltaTime) +
+				" | " + argString;
 
 			SDL_SetWindowTitle(sRenderer->getWindow(), title.c_str());
 		}
@@ -83,6 +114,28 @@ void Engine::engineLoop()
 		m_BeginFrame = m_EndFrame;
 		m_EndFrame = m_BeginFrame + invFpsLimit;
 	}
+}
+
+void Engine::gameLoop(bool useIt)
+{
+	if (!useIt) return;
+
+	sSceneDirector->mCurrentScene->onLoad();
+
+	sSceneDirector->mCurrentScene->onUpdate(deltaTime);
+
+	sSceneDirector->mCurrentScene->onRender();
+}
+
+void Engine::editorLoop(bool useIt)
+{
+	if (!useIt) return;
+
+	sSceneDirector->mEditorScene->onLoad();
+
+	sSceneDirector->mEditorScene->onUpdate(deltaTime);
+
+	sSceneDirector->mEditorScene->onRender();
 }
 
 double Engine::clockToSeconds(clock_t ticks) {
@@ -123,4 +176,35 @@ void Engine::doStuff(bool a)
 void Engine::destroy()
 {
 	deleteSingletons();
+}
+
+std::string Engine::argvToString()
+{
+	std::string resultString = "";
+	
+	if (argv == nullptr) return resultString;
+
+	int charCount;
+
+	for (size_t i = 0; i < argc; i++)
+	{
+		charCount = 0;
+		while (true)
+		{
+			if (argv[i][charCount] == NULL) break;
+
+			resultString += argv[i][charCount];
+			charCount++;
+		}
+
+		if (i < argc - 1)
+		{
+			resultString += std::string(" | argc ") + std::to_string(i + 1) + std::string(": ");
+		}
+	}
+
+	return std::string("argc 0: " + resultString.substr(resultString.find_last_of('\\') + 1, resultString.size()));
+
+
+	//return resultString;
 }
