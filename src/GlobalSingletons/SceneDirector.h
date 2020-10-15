@@ -27,6 +27,7 @@ public:
 	void goBack(bool load_on_return = true, bool preload = false);
 
 	Scene* mCurrentScene;
+	Scene* mEditorScene;
 
 private:
 	void initScenes();
@@ -37,6 +38,8 @@ private:
 	std::vector<Scene*> mScenes;
 	std::stack<Scene*> mSceneHistory;
 
+	void initEditorScene();
+	void deleteEditorScene();
 };
 
 #endif // !SCENE_DIRECTOR_H

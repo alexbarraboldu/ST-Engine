@@ -9,12 +9,16 @@ SceneDirector::SceneDirector() : Id()
 	id = GlobalVar::NO_PERMISSION;
 
 	initScenes();
+
+	initEditorScene();
 }
 
 SceneDirector::~SceneDirector()
 {
 	deleteScenes();
 	deleteSceneHistory();
+
+	deleteEditorScene();
 }
 
 SceneDirector* SceneDirector::getInstance()
@@ -90,4 +94,15 @@ void SceneDirector::deleteSceneHistory()
 	{
 		mSceneHistory.pop();
 	}
+}
+
+void SceneDirector::initEditorScene()
+{
+	mEditorScene = new Scene();
+	mEditorScene->preLoad();
+}
+
+void SceneDirector::deleteEditorScene()
+{
+	if (mEditorScene) delete mEditorScene;
 }
