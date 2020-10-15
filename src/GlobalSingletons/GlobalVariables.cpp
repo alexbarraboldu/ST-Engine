@@ -22,7 +22,7 @@ GlobalVariables::GlobalVariables()
 	pos_vertical_right = windowHeight;
 
 	quiteEngineLoop = true;
-	VSync = false;
+	VSync = false;	
 }
 
 GlobalVariables::~GlobalVariables() {}
