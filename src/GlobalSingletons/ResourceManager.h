@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-#include "Id.h"
+#include "../Id.h"
 
 class ResourceManager : public Id
 {

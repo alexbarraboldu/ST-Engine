@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 
+#include <vector>
+
 typedef enum {
 
 	FRAME_RATE = 1,
@@ -54,5 +56,43 @@ struct Padding {
 
 	Uint16 top, right, bottom, left;
 };
+
+//-----------------------------------
+//	VECTORS
+
+typedef struct {
+
+	float x;
+	float y;
+
+} Vector2;
+
+typedef struct {
+
+	float x;
+	float y;
+	float z;
+
+} Vector3;
+
+//-----------------------------------
+//	PERLIN NOISE
+
+typedef struct {
+
+	SDL_Rect area;
+	bool** noise;
+
+} WhiteNoise;
+
+typedef struct {
+
+	SDL_Rect area;
+	std::vector<Vector2*> noise;
+	int nodes;
+
+} PerlinNoise1D; 
+
+//-----------------------------------
 
 #endif // !STRUCUTRES_H

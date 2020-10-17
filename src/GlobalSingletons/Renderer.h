@@ -1,6 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-#include "Id.h"
+
+#include <vector>
+#include "../Id.h"
 
 class Renderer : Id {
 public:
@@ -36,10 +38,21 @@ public:
 	//------------------
 
 	void drawSprite(const char* name, SDL_Rect rect);
-
 	void drawText(SDL_Texture* text, SDL_Rect rect);
-
 	void drawSelection(SDL_Rect rect);
+
+	//------------------
+	WhiteNoise* whiteNoise;
+	WhiteNoise* generateWhiteNoise(SDL_Rect rect);
+	void regenerateWhiteNoise(WhiteNoise* WhiteNoise);
+
+	PerlinNoise1D* perlinNoise1D;
+	PerlinNoise1D* generatePerlinNoise1D(SDL_Rect rect, int nodes);
+	void regeneratePerlinNoise1D(PerlinNoise1D* perlinNoise1D, bool resize = false);
+	
+	void drawWhiteNoise();
+	void drawPerlinNoise1D();
+	void drawPerlinNoise2D();
 
 private:
 	static Renderer* instance;

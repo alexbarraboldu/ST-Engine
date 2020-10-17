@@ -3,7 +3,7 @@
 
 #include <cstdio>
 
-#include "Id.h"
+#include "../Id.h"
 
 class Input : Id {
 public:
